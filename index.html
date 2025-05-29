@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ing. Akhmadjon Ortikov Ph.D. - Personal Portfolio</title>
+  <style>
+    /* Base styles */
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --light-color: #f4f4f4;
+      --dark-color: #333;
+      --success-color: #2ecc71;
+      --security-color: #e74c3c;
+      --academic-color: #9b59b6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: #f9f9f9;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+    
+    a:hover {
+      color: #1a6aa8;
+    }
+    
+    h1, h2, h3 {
+      margin-bottom: 1rem;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    img {
+      max-width: 100%;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: opacity 0.2s ease-in;
+    }
+    
+    .btn:hover {
+      opacity: 0.9;
+      color: white;
+    }
+    
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-security {
+      background: var(--security-color);
+    }
+    
+    .btn-security-outline {
+      border-color: var(--security-color);
+      color: var(--security-color);
+    }
+    
+    .btn-security-outline:hover {
+      background: var(--security-color);
+      color: white;
+    }
+    
+    .btn-academic {
+      background: var(--academic-color);
+    }
+    
+    .btn-academic-outline {
+      border-color: var(--academic-color);
+      color: var(--academic-color);
+    }
+    
+    .btn-academic-outline:hover {
+      background: var(--academic-color);
+      color: white;
+    }
+    
+    section {
+      padding: 4rem 0;
+    }
+    
+    /* Header */
+    #main-header {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    #navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+    
+    #navbar .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    
+    #navbar ul {
+      display: flex;
+    }
+    
+    #navbar ul li {
+      margin-left: 1.5rem;
+    }
+    
+    /* Hero Section */
+    #hero {
+      background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('/api/placeholder/1200/800') no-repeat center center/cover;
+      color: white;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+    
+    #hero .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    #hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    #hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    /* About Section */
+    #about {
+      background: white;
+    }
+    
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    /* Skills Section */
+    #skills {
+      background: var(--light-color);
+    }
+    
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .skill-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .skill-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .skill-box h3 {
+      color: var(--primary-color);
+    }
+    
+    .skill-box.security h3 {
+      color: var(--security-color);
+    }
+    
+    .skill-box.academic h3 {
+      color: var(--academic-color);
+    }
+    
+    .badge {
+      display: inline-block;
+      background: var(--light-color);
+      color: var(--dark-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      margin: 0.2rem;
+    }
+    
+    /* Projects Section */
+    #projects .projects-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-box {
+      background: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-img {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .project-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .project-box:hover .project-img img {
+      transform: scale(1.1);
+    }
+    
+    .project-content {
+      padding: 1.5rem;
+    }
+    
+    /* Contact Section */
+    #contact {
+      background: var(--secondary-color);
+      color: white;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+    
+    .contact-info i {
+      margin-right: 0.5rem;
+    }
+    
+    /* Profiles Section */
+    #profiles {
+      background: white;
+    }
+    
+    .profiles-heading {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .profiles-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-card {
+      background: var(--light-color);
+      border-radius: 5px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .profile-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .profile-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+      object-fit: cover;
+    }
+    
+    .profile-card.academic {
+      border-top: 4px solid var(--academic-color);
+    }
+    
+    .profile-card.security {
+      border-top: 4px solid var(--security-color);
+    }
+    
+    .profile-card.professional {
+      border-top: 4px solid var(--primary-color);
+    }
+    
+    /* Footer */
+    #main-footer {
+      background: var(--dark-color);
+      color: white;
+      text-align: center;
+      padding: 2rem 0;
+    }
+    
+    .social-icons {
+      margin: 1.5rem 0;
+    }
+    
+    .social-icons a {
+      color: white;
+      margin: 0 0.5rem;
+      font-size: 1.5rem;
+    }
+    
+    /* Media Queries */
+    @media (max-width: 768px) {
+      #navbar {
+        flex-direction: column;
+      }
+      
+      #navbar ul {
+        margin-top: 1rem;
+      }
+      
+      #navbar ul li {
+        margin: 0 0.5rem;
+      }
+      
+      .about-container,
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      #hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="main-header">
+    <div class="container">
+      <nav id="navbar">
+        <h1 class="logo"><a href="#hero">Akhmadjon Ortikov</a></h1>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#profiles">Profiles</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Ing. Akhmadjon Ortikov Ph.D.</h1>
+        <p>QA Automation Specialist, Software Engineer, Researcher & Cybersecurity Expert</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn">Get In Touch</a>
+          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security" target="_blank">TryHackMe Profile</a>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank">Google Scholar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-container">
+        <div class="about-img">
+          <img src="/api/placeholder/400/400" alt="Profile Photo">
+        </div>
+        <div class="about-content">
+          <p>Hello! I'm a passionate QA Automation Specialist with a Ph.D. and engineering background. I specialize in creating robust test frameworks, ensuring high-quality software delivery, and implementing cybersecurity best practices.</p>
+          <p>With expertise in technologies like Playwright, Selenium, and various testing methodologies, I help teams deliver reliable and secure applications. I recently attended the Google Cloud Summit in the Czech Republic, continuing to expand my knowledge in cloud technologies.</p>
+          <p>In addition to my technical work, I maintain an active academic research profile with publications in respected journals and ongoing contributions to the scientific community.</p>
+          <a href="#" class="btn btn-outline">Download CV</a>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">View Publications</a>
+          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank">View Security Profile</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <div class="container">
+      <h2>My Skills</h2>
+      <div class="skills-container">
+        <div class="skill-box academic">
+          <h3>Research & Academic</h3>
+          <p>Published researcher with expertise in data analysis, scientific writing, and peer review processes.</p>
+          <div>
+            <span class="badge">Research Methodology</span>
+            <span class="badge">Data Analysis</span>
+            <span class="badge">Scientific Writing</span>
+            <span class="badge">Peer Review</span>
+          </div>
+        </div>
+        <div class="skill-box security">
+          <h3>Cybersecurity</h3>
+          <p>Experienced in vulnerability assessment, penetration testing, and security automation. Active participant on TryHackMe.</p>
+          <div>
+            <span class="badge">Penetration Testing</span>
+            <span class="badge">Vulnerability Assessment</span>
+            <span class="badge">OWASP</span>
+            <span class="badge">Security Automation</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>Test Automation</h3>
+          <p>Expert in creating and maintaining automated test frameworks using Playwright, Selenium, and other modern testing tools.</p>
+          <div>
+            <span class="badge">Playwright</span>
+            <span class="badge">Selenium</span>
+            <span class="badge">Cypress</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>JavaScript/TypeScript</h3>
+          <p>Strong programming skills in JavaScript and TypeScript for creating efficient and maintainable test code.</p>
+          <div>
+            <span class="badge">TypeScript</span>
+            <span class="badge">JavaScript</span>
+            <span class="badge">Node.js</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>CI/CD Integration</h3>
+          <p>Experience integrating automated tests into CI/CD pipelines for continuous quality assurance.</p>
+          <div>
+            <span class="badge">Jenkins</span>
+            <span class="badge">GitHub Actions</span>
+            <span class="badge">GitLab CI</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h3>Cloud Technologies</h3>
+          <p>Knowledge of cloud platforms like Google Cloud for deploying and testing applications at scale.</p>
+          <div>
+            <span class="badge">Google Cloud</span>
+            <span class="badge">AWS</span>
+            <span class="badge">Azure</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Research Section -->
+  <section id="research">
+    <div class="container">
+      <h2>Research & Publications</h2>
+      <p class="section-intro">My academic research focuses on innovative approaches to technology and engineering challenges. Below are some highlighted publications:</p>
+      
+      <div class="projects-container">
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Research Publication">
+          </div>
+          <div class="project-content">
+            <h3>Publication Title</h3>
+            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
+          </div>
+        </div>
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Research Publication">
+          </div>
+          <div class="project-content">
+            <h3>Publication Title</h3>
+            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
+          </div>
+        </div>
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Research Publication">
+          </div>
+          <div class="project-content">
+            <h3>Publication Title</h3>
+            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center" style="text-align: center; margin-top: 2rem;">
+        <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank">View All Publications</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2>Technical Projects</h2>
+      <div class="projects-container">
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Security Project">
+          </div>
+          <div class="project-content">
+            <h3>Web Application Security Testing</h3>
+            <p>Developed and implemented an automated security testing framework to identify OWASP Top 10 vulnerabilities in web applications.</p>
+            <a href="#" class="btn btn-security-outline">View Project</a>
+          </div>
+        </div>
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Project 1">
+          </div>
+          <div class="project-content">
+            <h3>Netlify Website Test Automation</h3>
+            <p>Developed comprehensive test automation suite for Netlify website using Playwright and TypeScript.</p>
+            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline">View Project</a>
+          </div>
+        </div>
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Project 2">
+          </div>
+          <div class="project-content">
+            <h3>E-Commerce Test Framework</h3>
+            <p>Created an end-to-end test framework for a large e-commerce platform, improving test coverage and release confidence.</p>
+            <a href="#" class="btn btn-outline">View Project</a>
+          </div>
+        </div>
+        <div class="project-box">
+          <div class="project-img">
+            <img src="/api/placeholder/400/300" alt="Project 3">
+          </div>
+          <div class="project-content">
+            <h3>API Testing Suite</h3>
+            <p>Developed automated API testing suite that reduced manual testing time by 70% and improved API reliability.</p>
+            <a href="#" class="btn btn-outline">View Project</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Profiles Section -->
+  <section id="profiles">
+    <div class="container">
+      <h2>Professional Profiles</h2>
+      
+      <h3 class="profiles-heading">Academic & Research Profiles</h3>
+      <div class="profiles-container">
+        <div class="profile-card academic">
+          <img src="/api/placeholder/100/100" alt="Google Scholar Logo">
+          <h3>Google Scholar</h3>
+          <p>Academic publications and citation metrics.</p>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">View Profile</a>
+        </div>
+        <div class="profile-card academic">
+          <img src="/api/placeholder/100/100" alt="Frontiers Logo">
+          <h3>Frontiers</h3>
+          <p>Research contributions and academic network.</p>
+          <a href="https://loop.frontiersin.org/people/2148895/overview" class="btn btn-academic-outline" target="_blank">View Profile</a>
+        </div>
+        <div class="profile-card academic">
+          <img src="/api/placeholder/100/100" alt="ResearchGate Logo">
+          <h3>ResearchGate</h3>
+          <p>Research papers, citations, and academic engagement metrics.</p>
+          <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" class="btn btn-academic-outline" target="_blank">View Profile</a>
+        </div>
+      </div>
+      
+      <h3 class="profiles-heading">Technical & Security Profiles</h3>
+      <div class="profiles-container">
+        <div class="profile-card security">
+          <img src="/api/placeholder/100/100" alt="TryHackMe Logo">
+          <h3>TryHackMe</h3>
+          <p>Active participant in cybersecurity challenges and learning paths.</p>
+          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank">View Profile</a>
+        </div>
+        <div class="profile-card professional">
+          <img src="/api/placeholder/100/100" alt="GitHub Logo">
+          <h3>GitHub</h3>
+          <p>Code repositories and open-source contributions.</p>
+          <a href="https://github.com/Adam-CZPG" class="btn btn-outline" target="_blank">View Projects</a>
+        </div>
+      </div>
+      
+      <h3 class="profiles-heading">Professional Networks</h3>
+      <div class="profiles-container">
+        <div class="profile-card professional">
+          <img src="/api/placeholder/100/100" alt="LinkedIn Logo">
+          <h3>LinkedIn</h3>
+          <p>Professional network and career updates.</p>
+          <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" class="btn btn-outline" target="_blank">Connect</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2>Get In Touch</h2>
+      <div class="contact-container">
+        <div class="contact-form">
+          <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="text" placeholder="Subject">
+            <textarea rows="6" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+        <div class="contact-info">
+          <h3>Contact Information</h3>
+          <p><i>📧</i> Email: akhmadjonortikov@gmail.com</p>
+          <p><i>📱</i> Phone: +420 774 284 450</p>
+          <p><i>📍</i> Location: Prague, Czech Republic</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i>LinkedIn</i></a>
+            <a href="https://github.com/Adam-CZPG" target="_blank"><i>GitHub</i></a>
+            <a href="https://tryhackme.com/p/Akhmadjon" target="_blank"><i>TryHackMe</i></a>
+            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank"><i>Google Scholar</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="main-footer">
+    <div class="container">
+      <p>&copy; 2023 Ing. Akhmadjon Ortikov Ph.D. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple JavaScript for smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
