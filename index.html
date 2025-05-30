@@ -344,19 +344,26 @@
     }
     
     /* Metrics Section Styles */
+    .metrics-source {
+      margin-bottom: 3rem;
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+
     .metrics-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
 
     .metric-box {
       background: var(--light-color);
-      padding: 2rem;
-      border-radius: 5px;
+      padding: 1.5rem;
+      border-radius: 8px;
       text-align: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
     }
 
@@ -372,124 +379,18 @@
       margin-bottom: 0.5rem;
     }
 
-    .metric-number.updating {
-      animation: pulse 0.5s ease;
-    }
-
-    .metrics-note {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin-top: 2rem;
-    }
-
-    @keyframes pulse {
-      0% { opacity: 1; }
-      50% { opacity: 0.5; }
-      100% { opacity: 1; }
-    }
-    
-    /* Tab System for Metrics */
-    .metrics-source-tabs {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .tab-button {
-      background: transparent;
-      border: none;
-      padding: 0.8rem 1.5rem;
+    .metric-label {
       font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
       color: #666;
     }
 
-    .tab-button:hover {
-      color: var(--academic-color);
-    }
-
-    .tab-button.active {
-      color: var(--academic-color);
-      font-weight: bold;
-    }
-
-    .tab-button.active::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: var(--academic-color);
-    }
-
-    .metrics-tab-content {
-      display: none;
-    }
-
-    .metrics-tab-content.active {
-      display: block;
-    }
-
-    .highlight-metric .metric-number {
-      color: #4caf50;
-    }
-
-    .metric-detail, .metric-trend {
-      display: block;
+    .metrics-source-info {
+      text-align: right;
       font-size: 0.85rem;
-      color: #666;
-      margin-top: 0.25rem;
-    }
-
-    .metric-trend {
-      color: #4caf50;
-      font-weight: bold;
-    }
-
-    .research-score-details {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .comparison-item {
-      margin: 1rem 0;
-    }
-
-    .progress-bar {
-      height: 8px;
-      background: #e0e0e0;
-      border-radius: 4px;
-      margin: 0.5rem 0;
-      position: relative;
-    }
-
-    .progress {
-      height: 100%;
-      background: var(--academic-color);
-      border-radius: 4px;
-    }
-
-    .marker {
-      position: absolute;
-      top: -5px;
-      width: 0;
-      height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid var(--academic-color);
-      transform: translateX(-50%);
-    }
-
-    .comparison-value {
-      font-weight: bold;
-      color: var(--academic-color);
+      color: #777;
+      margin-top: 1rem;
+      border-top: 1px solid #eee;
+      padding-top: 0.5rem;
     }
     
     /* Cybersecurity Achievements Section */
@@ -743,7 +644,7 @@
   <section id="research">
     <div class="container">
       <h2>Research & Publications</h2>
-      <p class="section-intro">My academic research focuses on innovative approaches to technology and engineering challenges. Below are some highlighted publications:</p>
+      <p class="section-intro">My academic research combines engineering principles with technological innovation to solve real-world challenges. With 4 publications garnering over 62,000 views and 32 citations, my work emphasizes practical applications in engineering and technology fields. Below are my key publications:</p>
       
       <div class="projects-container">
         <div class="project-box">
@@ -790,80 +691,72 @@
       <h2>Publication Metrics</h2>
       <p>Current statistics from my research publications across different platforms:</p>
       
-      <div class="metrics-source-tabs">
-        <button class="tab-button active" data-tab="frontiers">Frontiers</button>
-        <button class="tab-button" data-tab="researchgate">ResearchGate</button>
-      </div>
-      
-      <!-- Frontiers Metrics -->
-      <div class="metrics-tab-content active" id="frontiers-metrics">
+      <!-- Frontiers Loop Metrics -->
+      <div class="metrics-source">
         <h3>Frontiers Loop Impact</h3>
         <div class="metrics-container">
           <div class="metric-box">
-            <span class="metric-number" data-metric="totalViews">62,792</span>
+            <span class="metric-number">62,792</span>
             <span class="metric-label">Total Views</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="totalPublications">4</span>
+            <span class="metric-number">4</span>
             <span class="metric-label">Publications</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="citations">16</span>
+            <span class="metric-number">16</span>
             <span class="metric-label">Citations</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="downloads">2,186</span>
+            <span class="metric-number">2,186</span>
             <span class="metric-label">Downloads</span>
           </div>
         </div>
-        <p class="metrics-note">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: <span id="frontiers-last-updated">Loading...</span></p>
+        <p class="metrics-source-info">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: 30/05/2025</p>
       </div>
       
       <!-- ResearchGate Metrics -->
-      <div class="metrics-tab-content" id="researchgate-metrics">
+      <div class="metrics-source">
         <h3>ResearchGate Profile Stats</h3>
         <div class="metrics-container">
-          <div class="metric-box highlight-metric">
-            <span class="metric-number" data-metric="researchScore">73.5</span>
+          <div class="metric-box">
+            <span class="metric-number">73.5</span>
             <span class="metric-label">Research Interest Score</span>
-            <span class="metric-detail">Higher than 58% of members</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="reads">1,262</span>
+            <span class="metric-number">1,262</span>
             <span class="metric-label">Reads</span>
-            <span class="metric-trend">+4 last week</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="rgCitations">32</span>
+            <span class="metric-number">32</span>
             <span class="metric-label">Citations</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number" data-metric="recommendations">180</span>
+            <span class="metric-number">180</span>
             <span class="metric-label">Recommendations</span>
           </div>
         </div>
-        <div class="research-score-details">
-          <div class="score-comparison">
-            <h4>Score Comparisons</h4>
-            <div class="comparison-item">
-              <span class="comparison-label">Compared to all members:</span>
-              <div class="progress-bar">
-                <div class="progress" style="width: 58%"></div>
-                <div class="marker" style="left: 58%"></div>
-              </div>
-              <span class="comparison-value">Higher than 58%</span>
-            </div>
-            <div class="comparison-item">
-              <span class="comparison-label">Compared by publication date:</span>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%"></div>
-                <div class="marker" style="left: 80%"></div>
-              </div>
-              <span class="comparison-value">Higher than 80% (2019)</span>
-            </div>
+        <p class="metrics-source-info">Source: <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" target="_blank">ResearchGate</a> • Last updated: 30/05/2025</p>
+      </div>
+      
+      <!-- Google Scholar Metrics -->
+      <div class="metrics-source">
+        <h3>Google Scholar Citations</h3>
+        <div class="metrics-container">
+          <div class="metric-box">
+            <span class="metric-number">32</span>
+            <span class="metric-label">Citations</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-number">4</span>
+            <span class="metric-label">h-index</span>
+          </div>
+          <div class="metric-box">
+            <span class="metric-number">4</span>
+            <span class="metric-label">i10-index</span>
           </div>
         </div>
-        <p class="metrics-note">Source: <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd" target="_blank">ResearchGate</a> • Last updated: <span id="researchgate-last-updated">Loading...</span></p>
+        <p class="metrics-source-info">Source: <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank">Google Scholar</a> • Last updated: 30/05/2025</p>
       </div>
     </div>
   </section>
@@ -1063,91 +956,6 @@
   </footer>
 
   <script>
-    // Publication metrics updater
-    document.addEventListener('DOMContentLoaded', function() {
-        // Function to update metrics
-        function updateMetrics() {
-            // Frontiers metrics
-            const frontiersMetrics = {
-                totalViews: 62792,
-                profileViews: 250,
-                totalPublications: 4,
-                publicationViews: 62542,
-                downloads: 2186,
-                citations: 16
-            };
-            
-            // ResearchGate metrics
-            const researchgateMetrics = {
-                researchScore: 73.5,
-                reads: 1262,
-                rgCitations: 32,
-                recommendations: 180
-            };
-            
-            // Update Frontiers metrics
-            const frontiersElements = document.querySelectorAll('#frontiers-metrics [data-metric]');
-            frontiersElements.forEach(element => {
-                const metricName = element.getAttribute('data-metric');
-                if (frontiersMetrics[metricName] !== undefined) {
-                    element.classList.add('updating');
-                    setTimeout(() => {
-                        element.textContent = frontiersMetrics[metricName].toLocaleString();
-                        element.classList.remove('updating');
-                    }, 500);
-                }
-            });
-            
-            // Update ResearchGate metrics
-            const researchgateElements = document.querySelectorAll('#researchgate-metrics [data-metric]');
-            researchgateElements.forEach(element => {
-                const metricName = element.getAttribute('data-metric');
-                if (researchgateMetrics[metricName] !== undefined) {
-                    element.classList.add('updating');
-                    setTimeout(() => {
-                        element.textContent = researchgateMetrics[metricName].toLocaleString();
-                        element.classList.remove('updating');
-                    }, 500);
-                }
-            });
-            
-            // Add last updated timestamps
-            const frontiersLastUpdated = document.getElementById('frontiers-last-updated');
-            const researchgateLastUpdated = document.getElementById('researchgate-last-updated');
-            
-            if (frontiersLastUpdated) {
-                frontiersLastUpdated.textContent = new Date().toLocaleString();
-            }
-            
-            if (researchgateLastUpdated) {
-                researchgateLastUpdated.textContent = new Date().toLocaleString();
-            }
-        }
-        
-        // Tab functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.metrics-tab-content');
-        
-        tabButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                button.classList.add('active');
-                const tabName = button.getAttribute('data-tab');
-                document.getElementById(`${tabName}-metrics`).classList.add('active');
-            });
-        });
-        
-        // Update immediately on page load
-        updateMetrics();
-        
-        // Setup periodic updates (every hour)
-        setInterval(updateMetrics, 3600000);
-    });
-
     // Simple JavaScript for smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
