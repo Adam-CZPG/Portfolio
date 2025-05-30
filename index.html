@@ -389,6 +389,80 @@
       100% { opacity: 1; }
     }
     
+    /* Cybersecurity Achievements Section */
+    .bg-dark-section {
+      background-color: #1a1e26;
+      color: #f0f0f0;
+    }
+
+    .highlight {
+      color: #8bc34a;
+      font-weight: bold;
+    }
+
+    .tryhackme-profile {
+      background: #1e2633;
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--security-color);
+    }
+
+    .hacker-tag {
+      color: #8bc34a;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .badges-title {
+      margin-top: 3rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .badges-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .badge-item {
+      background: #1e2633;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .badge-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .badge-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .security-icon { color: #4caf50; }
+    .sql-icon { color: #e91e63; }
+    .linux-icon { color: #ffc107; }
+    .windows-icon { color: #2196f3; }
+    .awareness-icon { color: #9c27b0; }
+    .log-icon { color: #ff5722; }
+    
     /* Footer */
     #main-footer {
       background: var(--dark-color);
@@ -434,6 +508,11 @@
         flex-direction: column;
         align-items: center;
       }
+      
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -448,6 +527,7 @@
           <li><a href="#skills">Skills</a></li>
           <li><a href="#research">Research</a></li>
           <li><a href="#metrics">Metrics</a></li>
+          <li><a href="#security-achievements">Security</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#profiles">Profiles</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -630,6 +710,59 @@
     </div>
   </section>
 
+  <!-- Cybersecurity Achievements Section -->
+  <section id="security-achievements" class="bg-dark-section">
+    <div class="container">
+      <h2>Cybersecurity Achievements</h2>
+      <p>As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
+      
+      <div class="tryhackme-profile">
+        <div class="profile-header">
+          <img src="images/tryhackme-profile.jpg" alt="TryHackMe Profile" class="profile-image">
+          <div class="profile-details">
+            <h3>Akhmadjon <span class="hacker-tag">[0x8][HACKER]</span></h3>
+            <p>Rank: <span class="highlight">122081</span> • Badges: <span class="highlight">13</span></p>
+            <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security" target="_blank">View Full Profile</a>
+          </div>
+        </div>
+      </div>
+      
+      <h3 class="badges-title">Notable Achievements</h3>
+      <div class="badges-container">
+        <div class="badge-item">
+          <div class="badge-icon security-icon">🔒</div>
+          <h4>Security Engineering</h4>
+          <p>Completed the Security Engineer intro path</p>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon sql-icon">💉</div>
+          <h4>SQL Slayer</h4>
+          <p>Conquered Advanced SQL Injection</p>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon linux-icon">🐧</div>
+          <h4>Linux PrivEsc</h4>
+          <p>Mastering Linux Privilege Escalation</p>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon windows-icon">🪟</div>
+          <h4>Blue</h4>
+          <p>Hacking into Windows via EternalBlue</p>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon awareness-icon">🛡️</div>
+          <h4>Security Awareness</h4>
+          <p>Completed cyber security awareness training</p>
+        </div>
+        <div class="badge-item">
+          <div class="badge-icon log-icon">📊</div>
+          <h4>Logging Legend</h4>
+          <p>Completed the Log Analysis room</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
@@ -772,7 +905,50 @@
   </footer>
 
   <!-- Publication Metrics Script -->
-  <script src="js/metrics.js"></script>
+  <script>
+    // Publication metrics updater
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to update metrics
+        function updateMetrics() {
+            // Static metrics (since Frontiers doesn't provide a direct API)
+            // These would normally come from an API
+            const metrics = {
+                totalViews: 62792,
+                profileViews: 250,
+                totalPublications: 4,
+                publicationViews: 62542,
+                downloads: 2186,
+                citations: 16
+            };
+            
+            // Update the DOM elements with the metrics
+            const elements = document.querySelectorAll('[data-metric]');
+            elements.forEach(element => {
+                const metricName = element.getAttribute('data-metric');
+                if (metrics[metricName] !== undefined) {
+                    // Add animation effect
+                    element.classList.add('updating');
+                    setTimeout(() => {
+                        element.textContent = metrics[metricName].toLocaleString();
+                        element.classList.remove('updating');
+                    }, 500);
+                }
+            });
+            
+            // Add last updated timestamp
+            const lastUpdated = document.getElementById('metrics-last-updated');
+            if (lastUpdated) {
+                lastUpdated.textContent = new Date().toLocaleString();
+            }
+        }
+        
+        // Update immediately on page load
+        updateMetrics();
+        
+        // Setup periodic updates (every hour)
+        setInterval(updateMetrics, 3600000);
+    });
+  </script>
 
   <script>
     // Simple JavaScript for smooth scrolling
