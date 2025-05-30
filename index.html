@@ -4,16 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ing. Akhmadjon Ortikov Ph.D. - Personal Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Base styles */
+    /* Base styles with light theme */
     :root {
       --primary-color: #3498db;
       --secondary-color: #2c3e50;
-      --light-color: #f4f4f4;
-      --dark-color: #333;
-      --success-color: #2ecc71;
-      --security-color: #e74c3c;
+      --light-bg: #ffffff;
+      --section-bg: #f9f9f9;
+      --dark-text: #333;
+      --highlight-color: #3498db;
+      --accent-color: #e74c3c;
+      --muted-text: #777;
+      --border-color: #eee;
+      --header-height: 80px;
       --academic-color: #9b59b6;
+      --security-color: #e74c3c;
     }
     
     * {
@@ -25,29 +31,25 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
-      color: var(--dark-color);
-      background-color: #f9f9f9;
+      color: var(--dark-text);
+      background-color: var(--light-bg);
+      overflow-x: hidden;
     }
     
     a {
       text-decoration: none;
       color: var(--primary-color);
+      transition: color 0.3s ease;
     }
     
     a:hover {
-      color: #1a6aa8;
+      color: var(--highlight-color);
     }
     
     h1, h2, h3 {
       margin-bottom: 1rem;
-    }
-    
-    ul {
-      list-style: none;
-    }
-    
-    img {
-      max-width: 100%;
+      font-weight: 600;
+      color: var(--secondary-color);
     }
     
     .container {
@@ -58,19 +60,25 @@
     
     .btn {
       display: inline-block;
-      background: var(--primary-color);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--highlight-color);
       color: white;
       padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
       font-size: 1rem;
-      transition: opacity 0.2s ease-in;
+      transition: all 0.3s ease;
     }
     
     .btn:hover {
       opacity: 0.9;
-      color: white;
+      transform: translateY(-2px);
     }
     
     .btn-outline {
@@ -113,23 +121,31 @@
     }
     
     section {
-      padding: 4rem 0;
+      padding: 5rem 0;
     }
     
-    /* Header */
+    /* Header & Navigation */
     #main-header {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      position: sticky;
+      background-color: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      position: fixed;
       top: 0;
-      z-index: 10;
+      left: 0;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     
     #navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 0;
+      padding: 1rem 0;
     }
     
     #navbar .logo {
@@ -139,77 +155,261 @@
     
     #navbar ul {
       display: flex;
+      list-style: none;
     }
     
     #navbar ul li {
-      margin-left: 1.5rem;
+      margin-left: 2rem;
+    }
+    
+    #navbar ul li a {
+      position: relative;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      color: var(--dark-text);
+    }
+    
+    #navbar ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--highlight-color);
+      transition: width 0.3s ease;
+    }
+    
+    #navbar ul li a:hover::after {
+      width: 100%;
+    }
+    
+    .current {
+      color: var(--highlight-color) !important;
     }
     
     /* Hero Section */
     #hero {
-      background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('images/hero-bg.jpg') no-repeat center center/cover;
-      color: white;
+      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('images/hero-bg.jpg') no-repeat center center/cover;
       height: 100vh;
       display: flex;
       align-items: center;
       text-align: center;
+      position: relative;
     }
     
     #hero .hero-content {
       max-width: 800px;
       margin: 0 auto;
+      padding-top: var(--header-height);
     }
     
     #hero h1 {
       font-size: 3.5rem;
+      margin-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+    
+    #hero .welcome {
+      font-size: 1.5rem;
+      color: var(--muted-text);
+      margin-bottom: 1rem;
+    }
+    
+    #hero .typing-text {
+      height: 70px;
+      font-size: 3.5rem;
+      font-weight: 700;
       margin-bottom: 1.5rem;
+      position: relative;
+      overflow: hidden;
+      color: var(--secondary-color);
     }
     
-    #hero p {
-      font-size: 1.3rem;
+    #hero .profession {
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 1rem;
       margin-bottom: 2rem;
+      color: var(--muted-text);
     }
     
-    .hero-buttons {
+    .social-icons {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
     
-    /* About Section */
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.05);
+      color: var(--dark-text);
+      transition: all 0.3s ease;
+    }
+    
+    .social-icons a:hover {
+      background: var(--highlight-color);
+      color: white;
+      transform: translateY(-3px);
+    }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      color: var(--muted-text);
+    }
+    
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    /* About Section - Compact Version */
     #about {
-      background: white;
+      background: var(--light-bg);
+      padding: 4rem 0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+      position: relative;
+      padding-bottom: 1rem;
+      color: var(--secondary-color);
+    }
+    
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 3px;
+      width: 70px;
+      background: var(--highlight-color);
     }
     
     .about-container {
       display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 3rem;
+      grid-template-columns: 1fr 3fr;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    
+    .about-img {
+      text-align: center;
+    }
+    
+    .about-img img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid var(--section-bg);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .about-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+    
+    .about-text p {
+      margin-bottom: 1rem;
+      color: var(--muted-text);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+    
+    .personal-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    
+    .info-item {
+      display: flex;
+      gap: 0.5rem;
       align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-icon {
+      color: var(--highlight-color);
+      width: 20px;
+      text-align: center;
+    }
+    
+    .info-title {
+      font-weight: 600;
+      color: var(--dark-text);
+    }
+    
+    .info-value {
+      color: var(--muted-text);
+    }
+    
+    .about-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .about-buttons .btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      padding: 0.6rem 1.2rem;
     }
     
     /* Skills Section */
     #skills {
-      background: var(--light-color);
+      background: var(--section-bg);
     }
     
     .skills-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
     }
     
     .skill-box {
-      background: white;
+      background: var(--light-bg);
       padding: 2rem;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
     
     .skill-box:hover {
       transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
     
     .skill-box h3 {
@@ -224,28 +424,98 @@
       color: var(--academic-color);
     }
     
-    .badge {
-      display: inline-block;
-      background: var(--light-color);
-      color: var(--dark-color);
-      padding: 0.3rem 0.8rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      margin: 0.2rem;
+    .skill-box p {
+      color: var(--muted-text);
+      margin-bottom: 1.5rem;
     }
     
-    /* Projects Section */
-    #projects .projects-container {
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(52, 152, 219, 0.1);
+      color: var(--primary-color);
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+    
+    /* Experience Section */
+    #experience {
+      background: var(--light-bg);
+      padding: 5rem 0;
+    }
+    
+    .company-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      margin: 2rem 0;
+    }
+    
+    .company-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .company-logo:hover {
+      transform: translateY(-10px);
+    }
+    
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--section-bg);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .logo-container i {
+      font-size: 3rem;
+      color: var(--secondary-color);
+    }
+    
+    .company-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark-text);
+      text-align: center;
+    }
+    
+    /* Research Section */
+    #research {
+      background: var(--section-bg);
+    }
+    
+    .projects-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
     }
     
     .project-box {
-      background: white;
-      border-radius: 5px;
+      background: var(--light-bg);
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .project-box:hover {
+      transform: translateY(-10px);
     }
     
     .project-img {
@@ -268,34 +538,98 @@
       padding: 1.5rem;
     }
     
-    /* Contact Section */
-    #contact {
-      background: var(--secondary-color);
-      color: white;
+    .project-content h3 {
+      color: var(--dark-text);
     }
     
-    .contact-container {
+    .project-content p {
+      color: var(--muted-text);
+      margin-bottom: 1.5rem;
+    }
+    
+    /* Metrics Section */
+    .metrics-container {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
     }
     
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border: none;
-      border-radius: 5px;
+    .metric-box {
+      background: var(--light-bg);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
     
-    .contact-info i {
-      margin-right: 0.5rem;
+    .metric-box:hover {
+      transform: translateY(-5px);
+    }
+    
+    .metric-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--highlight-color);
+      margin-bottom: 0.5rem;
+    }
+    
+    .metric-label {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+    }
+    
+    .metrics-source-info {
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--muted-text);
+      margin-top: 1rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.5rem;
+    }
+    
+    /* Security Section */
+    #security-achievements {
+      background: var(--light-bg);
+    }
+    
+    .tryhackme-profile {
+      background: var(--section-bg);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid var(--security-color);
+    }
+    
+    .hacker-tag {
+      color: #4caf50;
+      font-family: monospace;
+      font-weight: bold;
+    }
+    
+    .highlight {
+      color: var(--security-color);
+      font-weight: bold;
     }
     
     /* Profiles Section */
     #profiles {
-      background: white;
+      background: var(--section-bg);
     }
     
     .profiles-heading {
@@ -311,7 +645,7 @@
     }
     
     .profile-card {
-      background: var(--light-color);
+      background: var(--light-bg);
       border-radius: 5px;
       padding: 2rem;
       text-align: center;
@@ -343,149 +677,108 @@
       border-top: 4px solid var(--primary-color);
     }
     
-    /* Metrics Section Styles */
-    .metrics-source {
-      margin-bottom: 3rem;
-      background: white;
-      border-radius: 8px;
-      padding: 2rem;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    /* Contact Section */
+    #contact {
+      background: var(--light-bg);
     }
     
-    .metrics-container {
+    .contact-container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0;
-    }
-
-    .metric-box {
-      background: var(--light-color);
-      padding: 1.5rem;
-      border-radius: 8px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .metric-box:hover {
-      transform: translateY(-5px);
-    }
-
-    .metric-number {
-      display: block;
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: var(--academic-color);
-      margin-bottom: 0.5rem;
-    }
-
-    .metric-label {
-      font-size: 1rem;
-      color: #666;
-    }
-
-    .metrics-source-info {
-      text-align: right;
-      font-size: 0.85rem;
-      color: #777;
-      margin-top: 1rem;
-      border-top: 1px solid #eee;
-      padding-top: 0.5rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
     }
     
-    /* Cybersecurity Achievements Section */
-    .bg-dark-section {
-      background-color: #1a1e26;
-      color: #f0f0f0;
-    }
-
-    .highlight {
-      color: #8bc34a;
-      font-weight: bold;
-    }
-
-    .tryhackme-profile {
-      background: #1e2633;
-      border-radius: 10px;
-      padding: 2rem;
-      margin: 2rem 0;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .profile-header {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .profile-image {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 3px solid var(--security-color);
-    }
-    
-    .hacker-tag {
-      color: #8bc34a;
-      font-family: monospace;
-      font-weight: bold;
-    }
-
-    .badges-title {
-      margin-top: 3rem;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-
-    .badges-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .badge-item {
-      background: #1e2633;
-      border-radius: 10px;
-      padding: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-
-    .badge-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .badge-icon {
-      font-size: 2.5rem;
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 1rem;
       margin-bottom: 1rem;
+      background: var(--section-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      color: var(--dark-text);
+      transition: all 0.3s ease;
     }
     
-    .security-icon { color: #4caf50; }
-    .sql-icon { color: #e91e63; }
-    .linux-icon { color: #ffc107; }
-    .windows-icon { color: #2196f3; }
-    .awareness-icon { color: #9c27b0; }
-    .log-icon { color: #ff5722; }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--highlight-color);
+    }
+    
+    .contact-form ::placeholder {
+      color: var(--muted-text);
+    }
+    
+    .contact-info h3 {
+      margin-bottom: 1.5rem;
+    }
+    
+    .contact-info p {
+      margin-bottom: 1rem;
+      color: var(--muted-text);
+    }
+    
+    .contact-info p i {
+      margin-right: 0.5rem;
+      color: var(--highlight-color);
+    }
     
     /* Footer */
     #main-footer {
-      background: var(--dark-color);
-      color: white;
+      background: var(--section-bg);
       text-align: center;
       padding: 2rem 0;
+      border-top: 1px solid var(--border-color);
     }
     
-    .social-icons {
-      margin: 1.5rem 0;
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     
-    .social-icons a {
-      color: white;
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+    
+    /* Typing animation for hero section */
+    .typing-text::after {
+      content: '|';
+      animation: blink 0.7s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
     
     /* Media Queries */
+    @media (max-width: 992px) {
+      .about-container, 
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      #hero h1, 
+      #hero .typing-text {
+        font-size: 2.5rem;
+      }
+      
+      .personal-info {
+        grid-template-columns: 1fr;
+      }
+      
+      .company-logos {
+        gap: 1.5rem;
+      }
+      
+      .logo-container {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    
     @media (max-width: 768px) {
       #navbar {
         flex-direction: column;
@@ -493,29 +786,43 @@
       
       #navbar ul {
         margin-top: 1rem;
+        justify-content: center;
       }
       
       #navbar ul li {
         margin: 0 0.5rem;
       }
       
-      .about-container,
-      .contact-container {
-        grid-template-columns: 1fr;
-      }
-      
-      #hero h1 {
-        font-size: 2.5rem;
-      }
-      
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
+      .section-title h2 {
+        font-size: 2rem;
       }
       
       .profile-header {
         flex-direction: column;
         text-align: center;
+      }
+      
+      .about-buttons {
+        justify-content: center;
+      }
+      
+      .company-logos {
+        gap: 1rem;
+      }
+      
+      .logo-container {
+        width: 80px;
+        height: 80px;
+      }
+      
+      .company-name {
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .company-logos {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -527,13 +834,11 @@
       <nav id="navbar">
         <h1 class="logo"><a href="#hero">Akhmadjon Ortikov</a></h1>
         <ul>
+          <li><a href="#hero" class="current">[ Home ]</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Service</a></li>
           <li><a href="#research">Research</a></li>
-          <li><a href="#metrics">Metrics</a></li>
-          <li><a href="#security-achievements">Security</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#profiles">Profiles</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -544,180 +849,335 @@
   <section id="hero">
     <div class="container">
       <div class="hero-content">
-        <h1>Ing. Akhmadjon Ortikov Ph.D.</h1>
-        <p>QA Automation Specialist, Software Engineer, Researcher & Cybersecurity Expert</p>
-        <div class="hero-buttons">
-          <a href="#contact" class="btn">Get In Touch</a>
-          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security" target="_blank">TryHackMe Profile</a>
-          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank">Google Scholar</a>
+        <p class="welcome">Welcome!</p>
+        <div class="typing-text" id="typing-text">I'm Akhmadjon</div>
+        <p class="profession">DEVELOPER</p>
+        <div class="social-icons">
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-github"></i></a>
         </div>
+      </div>
+      <div class="scroll-down">
+        <a href="#about"><i class="fas fa-chevron-down"></i></a>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- About Section - Compact Version -->
   <section id="about">
     <div class="container">
-      <h2>About Me</h2>
+      <div class="section-title">
+        <h2>About Me</h2>
+      </div>
       <div class="about-container">
         <div class="about-img">
           <img src="images/profile-photo.jpg" alt="Profile Photo">
         </div>
-        <div class="about-content">
+        <div class="about-text">
+          <h3>Ing. Akhmadjon Ortikov Ph.D.</h3>
           <p>Hello! I'm a passionate QA Automation Specialist with a Ph.D. and engineering background. I specialize in creating robust test frameworks, ensuring high-quality software delivery, and implementing cybersecurity best practices.</p>
-          <p>With expertise in technologies like Playwright, Selenium, and various testing methodologies, I help teams deliver reliable and secure applications. I recently attended the Google Cloud Summit in the Czech Republic, continuing to expand my knowledge in cloud technologies.</p>
-          <p>In addition to my technical work, I maintain an active academic research profile with publications in respected journals and ongoing contributions to the scientific community.</p>
-          <a href="#" class="btn btn-outline">Download CV</a>
-          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">View Publications</a>
-          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank">View Security Profile</a>
+          <p>With expertise in technologies like Playwright, Selenium, and various testing methodologies, I help teams deliver reliable and secure applications while maintaining an active academic research profile.</p>
+          
+          <div class="personal-info">
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-user"></i></div>
+              <div class="info-title">Full Name:</div>
+              <div class="info-value">Akhmadjon Ortikov</div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-envelope"></i></div>
+              <div class="info-title">Email:</div>
+              <div class="info-value">akhmadjonortikov@gmail.com</div>
+            </div>
+            <div class="info-item"></div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-phone"></i></div>
+              <div class="info-title">Phone:</div>
+              <div class="info-value">+420 774 284 450</div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="info-title">Location:</div>
+              <div class="info-value">Prague, Czech Republic</div>
+            </div>
+          </div>
+          
+          <div class="about-buttons">
+            <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
+            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-graduation-cap"></i> Publications</a>
+            <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank"><i class="fas fa-shield-alt"></i> Security Profile</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+<!-- Work Experience Section -->
+<section id="experience">
+  <div class="container">
+    <div class="section-title">
+      <h2>Work Experience</h2>
+    </div>
+    <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
+      Throughout my career, I've had the opportunity to work with some incredible organizations, building expertise in software quality assurance, automation, and security.
+    </p>
+    
+    <style>
+      .company-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin: 2rem 0;
+      }
+      
+      .company-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 220px;
+        transition: transform 0.3s ease;
+      }
+      
+      .company-logo:hover {
+        transform: translateY(-10px);
+      }
+      
+      .logo-container {
+        width: 200px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--section-bg);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+    </style>
+    
+    <div class="company-logos">
+      <!-- Amazon logo - larger and more visible -->
+      <div class="company-logo">
+        <div class="logo-container" style="display: flex; justify-content: center; align-items: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="180" height="60">
+            <!-- Simple amazon text - larger -->
+            <path d="M23,20 L40,20 C43,20 45,22 45,25 L45,35 C45,38 43,40 40,40 L23,40 C20,40 18,38 18,35 L18,25 C18,22 20,20 23,20 Z" fill="#FFFFFF"/>
+            <g transform="scale(1.8) translate(8, 4)">
+              <!-- "amazon" text -->
+              <path d="M35,17.5L35,15.3C35,15.1 34.8,15 34.6,15L30.4,15C30.2,15 30,15.1 30,15.3L30,17.1C30,17.3 30.2,17.5 30.4,17.5L32.7,17.5L30.1,21.1C30,21.2 30,21.4 30,21.5L30,23.7C30,23.9 30.2,24 30.4,24L34.6,24C34.8,24 35,23.9 35,23.7L35,21.9C35,21.7 34.8,21.5 34.6,21.5L32.3,21.5L34.9,17.9C35,17.8 35,17.6 35,17.5Z" fill="#000000"/>
+              <path d="M44,17.3L44,15.3C44,15.1 43.8,15 43.6,15L37.4,15C37.2,15 37,15.1 37,15.3L37,23.7C37,23.9 37.2,24 37.4,24L43.6,24C43.8,24 44,23.9 44,23.7L44,21.7C44,21.5 43.8,21.4 43.6,21.4L40,21.4L40,20.7L43.3,20.7C43.5,20.7 43.7,20.6 43.7,20.4L43.7,18.6C43.7,18.4 43.5,18.3 43.3,18.3L40,18.3L40,17.6L43.6,17.6C43.8,17.3 44,17.5 44,17.3Z" fill="#000000"/>
+              <path d="M53,17.3L53,15.3C53,15.1 52.8,15 52.6,15L46.4,15C46.2,15 46,15.1 46,15.3L46,23.7C46,23.9 46.2,24 46.4,24L52.6,24C52.8,24 53,23.9 53,23.7L53,21.7C53,21.5 52.8,21.4 52.6,21.4L49,21.4L49,20.7L52.3,20.7C52.5,20.7 52.7,20.6 52.7,20.4L52.7,18.6C52.7,18.4 52.5,18.3 52.3,18.3L49,18.3L49,17.6L52.6,17.6C52.8,17.3 53,17.5 53,17.3Z" fill="#000000"/>
+              <path d="M59,24C57,24 55.5,22.5 55.5,20.5C55.5,18.5 57,17 59,17C61,17 62.5,18.5 62.5,20.5C62.5,22.5 61,24 59,24ZM59,19C58.2,19 57.5,19.6 57.5,20.5C57.5,21.3 58.1,22 59,22C59.9,22 60.5,21.4 60.5,20.5C60.5,19.7 59.9,19 59,19Z" fill="#000000"/>
+              <path d="M68,24L65,24C64.8,24 64.6,23.9 64.6,23.7L64.6,15.3C64.6,15.1 64.8,15 65,15L67.4,15C67.6,15 67.8,15.1 67.8,15.3L67.8,20.9L70.5,15.3C70.6,15.1 70.7,15 70.9,15L73.3,15C73.5,15 73.7,15.1 73.7,15.3L73.7,23.7C73.7,23.9 73.5,24 73.3,24L70.9,24C70.7,24 70.5,23.9 70.5,23.7L70.5,18.1L67.8,23.7C67.7,23.9 67.6,24 68,24Z" fill="#000000"/>
+            </g>
+            <!-- Amazon smile/arrow - larger -->
+            <path d="M25,45C35,45 42,43 48,40C48.6,39.8 49,40.2 48.6,40.5C45,43 38,46 30,46C22,46 15,43 11.4,40.5C11,40.2 11.4,39.8 12,40C18,43 25,45 25,45Z" fill="#FF9900"/>
+            <path d="M46,40C46.2,39.8 46.6,40 46.6,40.3C46.6,41.3 45.6,43.3 44.6,44C44.4,44.2 44.2,44 44.3,43.8C44.8,43 45.6,41.3 46,40Z" fill="#FF9900"/>
+          </svg>
+        </div>
+        <span class="company-name">Amazon</span>
+      </div>
+
+      <!-- Microsoft -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="180" height="70">
+            <rect x="5" y="5" width="18" height="18" fill="#F25022"/>
+            <rect x="25" y="5" width="18" height="18" fill="#7FBA00"/>
+            <rect x="5" y="25" width="18" height="18" fill="#00A4EF"/>
+            <rect x="25" y="25" width="18" height="18" fill="#FFB900"/>
+          </svg>
+        </div>
+        <span class="company-name">Microsoft</span>
+      </div>
+      
+      <!-- Worldline -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="180" height="40">
+            <text x="5" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#33CCAA">WORLDLINE</text>
+            <path d="M180,20 C185,25 185,35 180,40" stroke="#33CCAA" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <span class="company-name">Worldline</span>
+      </div>
+      
+      <!-- Netmonita -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="40">
+            <g transform="translate(10, 15) scale(1.2)">
+              <rect x="0" y="0" width="8" height="30" fill="#000"/>
+              <rect x="12" y="5" width="8" height="25" fill="#000"/>
+              <rect x="24" y="10" width="8" height="20" fill="#C0D72F"/>
+            </g>
+            <text x="55" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#000">net</text>
+            <text x="90" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#C0D72F">monita</text>
+            <text x="155" y="30" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#000">®</text>
+          </svg>
+        </div>
+        <span class="company-name">Netmonita</span>
+      </div>
+      
+      <!-- Media Matters International -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="180" height="45">
+            <rect x="5" y="5" width="35" height="35" fill="#0000AA"/>
+            <text x="15" y="30" font-family="Arial, sans-serif" font-weight="bold" font-size="25" fill="#FFFFFF">M</text>
+            <text x="45" y="20" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Media</text>
+            <text x="45" y="38" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Matters</text>
+          </svg>
+        </div>
+        <span class="company-name">Media Matters International</span>
+      </div>
+      
+      <!-- Dacoreit -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="40">
+            <text x="15" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="24" fill="#000">Dacore</text>
+            <text x="100" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#0088CC">iT</text>
+            <path d="M125,20 C140,20 145,30 145,35" stroke="#0088CC" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <span class="company-name">Dacoreit</span>
+      </div>
+      
+      <!-- Cision -->
+      <div class="company-logo">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="45">
+            <text x="25" y="40" font-family="Arial, sans-serif" font-weight="bold" font-size="36">
+              <tspan fill="#001E61">C</tspan>
+              <tspan fill="#001E61">I</tspan>
+              <tspan fill="#F36E21">S</tspan>
+              <tspan fill="#F36E21">I</tspan>
+              <tspan fill="#001E61">O</tspan>
+              <tspan fill="#001E61">N</tspan>
+            </text>
+          </svg>
+        </div>
+        <span class="company-name">Cision</span>
+      </div>
+    </div>
+  </div>
+</section>
   <!-- Skills Section -->
   <section id="skills">
     <div class="container">
-      <h2>My Skills</h2>
+      <div class="section-title">
+        <h2>My Skills</h2>
+      </div>
       <div class="skills-container">
         <div class="skill-box academic">
-          <h3>Research & Academic</h3>
+          <h3><i class="fas fa-graduation-cap"></i> Research & Academic</h3>
           <p>Published researcher with expertise in data analysis, scientific writing, and peer review processes.</p>
-          <div>
-            <span class="badge">Research Methodology</span>
-            <span class="badge">Data Analysis</span>
-            <span class="badge">Scientific Writing</span>
-            <span class="badge">Peer Review</span>
+          <div class="skill-tags">
+            <span class="tag">Research Methodology</span>
+            <span class="tag">Data Analysis</span>
+            <span class="tag">Scientific Writing</span>
+            <span class="tag">Peer Review</span>
           </div>
         </div>
         <div class="skill-box security">
-          <h3>Cybersecurity</h3>
+          <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
           <p>Experienced in vulnerability assessment, penetration testing, and security automation. Active participant on TryHackMe.</p>
-          <div>
-            <span class="badge">Penetration Testing</span>
-            <span class="badge">Vulnerability Assessment</span>
-            <span class="badge">OWASP</span>
-            <span class="badge">Security Automation</span>
+          <div class="skill-tags">
+            <span class="tag">Penetration Testing</span>
+            <span class="tag">Vulnerability Assessment</span>
+            <span class="tag">OWASP</span>
+            <span class="tag">Security Automation</span>
           </div>
         </div>
         <div class="skill-box">
-          <h3>Test Automation</h3>
+          <h3><i class="fas fa-robot"></i> Test Automation</h3>
           <p>Expert in creating and maintaining automated test frameworks using Playwright, Selenium, and other modern testing tools.</p>
-          <div>
-            <span class="badge">Playwright</span>
-            <span class="badge">Selenium</span>
-            <span class="badge">Cypress</span>
+          <div class="skill-tags">
+            <span class="tag">Playwright</span>
+            <span class="tag">Selenium</span>
+            <span class="tag">Cypress</span>
           </div>
         </div>
         <div class="skill-box">
-          <h3>JavaScript/TypeScript</h3>
+          <h3><i class="fab fa-js"></i> JavaScript/TypeScript</h3>
           <p>Strong programming skills in JavaScript and TypeScript for creating efficient and maintainable test code.</p>
-          <div>
-            <span class="badge">TypeScript</span>
-            <span class="badge">JavaScript</span>
-            <span class="badge">Node.js</span>
+          <div class="skill-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
           </div>
         </div>
         <div class="skill-box">
-          <h3>CI/CD Integration</h3>
+          <h3><i class="fas fa-code-branch"></i> CI/CD Integration</h3>
           <p>Experience integrating automated tests into CI/CD pipelines for continuous quality assurance.</p>
-          <div>
-            <span class="badge">Jenkins</span>
-            <span class="badge">GitHub Actions</span>
-            <span class="badge">GitLab CI</span>
+          <div class="skill-tags">
+            <span class="tag">Jenkins</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">GitLab CI</span>
           </div>
         </div>
         <div class="skill-box">
-          <h3>Cloud Technologies</h3>
+          <h3><i class="fas fa-cloud"></i> Cloud Technologies</h3>
           <p>Knowledge of cloud platforms like Google Cloud for deploying and testing applications at scale.</p>
-          <div>
-            <span class="badge">Google Cloud</span>
-            <span class="badge">AWS</span>
-            <span class="badge">Azure</span>
+          <div class="skill-tags">
+            <span class="tag">Google Cloud</span>
+            <span class="tag">AWS</span>
+            <span class="tag">Azure</span>
           </div>
         </div>
       </div>
     </div>
   </section>
   
-  <!-- Research Section -->
-  <section id="research">
-    <div class="container">
-      <h2>Research & Publications</h2>
-      <p class="section-intro">My academic research combines engineering principles with technological innovation to solve real-world challenges. With 12 publications garnering over 62,000 views and 32 citations, my work emphasizes practical applications in engineering and technology fields. Below are my key publications:</p>
-      
-      <div class="projects-container">
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/research-1.jpg" alt="Research Publication">
-          </div>
-          <div class="project-content">
-            <h3>Publication Title</h3>
-            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
-            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
-          </div>
-        </div>
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/research-2.jpg" alt="Research Publication">
-          </div>
-          <div class="project-content">
-            <h3>Publication Title</h3>
-            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
-            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
-          </div>
-        </div>
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/research-3.jpg" alt="Research Publication">
-          </div>
-          <div class="project-content">
-            <h3>Publication Title</h3>
-            <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
-            <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">Read Publication</a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="text-center" style="text-align: center; margin-top: 2rem;">
-        <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank">View All Publications</a>
-      </div>
+  <!-- Research & Metrics Section (Combined) -->
+<section id="research">
+  <div class="container">
+    <div class="section-title">
+      <h2>Research & Academic Impact</h2>
     </div>
-  </section>
-
-  <!-- Academic Metrics Section -->
-  <section id="metrics">
-    <div class="container">
-      <h2>Publication Metrics</h2>
-      <p>Current statistics from my research publications across different platforms:</p>
+    <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
+      My academic research combines engineering principles with technological innovation to solve real-world challenges. With 4 publications garnering over 62,000 views and 32 citations, my work emphasizes practical applications in engineering and technology fields.
+    </p>
+    
+    <!-- Publication Metrics Section -->
+    <div style="background: var(--light-bg); border-radius: 10px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+      <h3 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-chart-line"></i> Publication Impact Metrics</h3>
       
       <!-- Frontiers Loop Metrics -->
       <div class="metrics-source">
-        <h3>Frontiers Loop Impact</h3>
+        <h3><i class="fas fa-chart-line"></i> Frontiers Loop Impact</h3>
         <div class="metrics-container">
           <div class="metric-box">
-            <span class="metric-number">62,792</span>
+            <span class="metric-number" data-metric="totalViews">62,792</span>
             <span class="metric-label">Total Views</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number">4</span>
+            <span class="metric-number" data-metric="totalPublications">4</span>
             <span class="metric-label">Publications</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number">16</span>
+            <span class="metric-number" data-metric="citations">16</span>
             <span class="metric-label">Citations</span>
           </div>
           <div class="metric-box">
-            <span class="metric-number">2,186</span>
+            <span class="metric-number" data-metric="downloads">2,186</span>
             <span class="metric-label">Downloads</span>
           </div>
         </div>
-        <p class="metrics-source-info">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: 30/05/2025</p>
+        <p class="metrics-source-info">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: <span id="metrics-last-updated">30/05/2025</span></p>
       </div>
       
       <!-- ResearchGate Metrics -->
       <div class="metrics-source">
-        <h3>ResearchGate Profile Stats</h3>
+        <h3><i class="fab fa-researchgate"></i> ResearchGate Profile Stats</h3>
         <div class="metrics-container">
           <div class="metric-box">
             <span class="metric-number">73.5</span>
@@ -739,33 +1199,78 @@
         <p class="metrics-source-info">Source: <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" target="_blank">ResearchGate</a> • Last updated: 30/05/2025</p>
       </div>
       
-      <!-- Google Scholar Metrics -->
-      <div class="metrics-source">
-        <h3>Google Scholar Citations</h3>
-        <div class="metrics-container">
-          <div class="metric-box">
-            <span class="metric-number">32</span>
-            <span class="metric-label">Citations</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number">4</span>
-            <span class="metric-label">h-index</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number">4</span>
-            <span class="metric-label">i10-index</span>
-          </div>
+     <!-- Google Scholar Metrics -->
+<div class="metrics-source">
+  <h3><i class="fas fa-graduation-cap"></i> Google Scholar Citations</h3>
+  <div class="metrics-container">
+    <div class="metric-box">
+      <span class="metric-number">12</span>
+      <span class="metric-label">Publications</span>
+    </div>
+    <div class="metric-box">
+      <span class="metric-number">32</span>
+      <span class="metric-label">Citations</span>
+    </div>
+    <div class="metric-box">
+      <span class="metric-number">4</span>
+      <span class="metric-label">h-index</span>
+    </div>
+    <div class="metric-box">
+      <span class="metric-number">4</span>
+      <span class="metric-label">i10-index</span>
+    </div>
+  </div>
+  <p class="metrics-source-info">Source: <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank">Google Scholar</a> • Last updated: 30/05/2025</p>
+</div>
+    
+    <!-- Publications -->
+    <h3 style="text-align: center; margin-bottom: 2rem;">Featured Publications</h3>
+    <div class="projects-container">
+      <div class="project-box">
+        <div class="project-img">
+          <img src="images/research-1.jpg" alt="Research Publication">
         </div>
-        <p class="metrics-source-info">Source: <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank">Google Scholar</a> • Last updated: 30/05/2025</p>
+        <div class="project-content">
+          <h3>Publication Title</h3>
+          <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-book"></i> Read Publication</a>
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-img">
+          <img src="images/research-2.jpg" alt="Research Publication">
+        </div>
+        <div class="project-content">
+          <h3>Publication Title</h3>
+          <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-book"></i> Read Publication</a>
+        </div>
+      </div>
+      <div class="project-box">
+        <div class="project-img">
+          <img src="images/research-3.jpg" alt="Research Publication">
+        </div>
+        <div class="project-content">
+          <h3>Publication Title</h3>
+          <p>Brief description of this research publication and its impact on the field. Include methodology and key findings.</p>
+          <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-book"></i> Read Publication</a>
+        </div>
       </div>
     </div>
-  </section>
+    
+    <div class="text-center" style="text-align: center; margin-top: 2rem;">
+      <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank"><i class="fas fa-graduation-cap"></i> View All Publications</a>
+    </div>
+  </div>
+</section>
 
   <!-- Cybersecurity Achievements Section -->
-  <section id="security-achievements" class="bg-dark-section">
+  <section id="security-achievements">
     <div class="container">
-      <h2>Cybersecurity Achievements</h2>
-      <p>As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
+      <div class="section-title">
+        <h2>Cybersecurity Achievements</h2>
+      </div>
+      <p style="text-align: center; margin-bottom: 2rem;">As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
       
       <div class="tryhackme-profile">
         <div class="profile-header">
@@ -773,51 +1278,51 @@
           <div class="profile-details">
             <h3>Akhmadjon <span class="hacker-tag">[0x8][HACKER]</span></h3>
             <p>Rank: <span class="highlight">122081</span> • Badges: <span class="highlight">13</span></p>
-            <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security" target="_blank">View Full Profile</a>
+            <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security" target="_blank"><i class="fas fa-external-link-alt"></i> View Full Profile</a>
           </div>
         </div>
       </div>
       
-      <h3 class="badges-title">Notable Achievements</h3>
-      <div class="badges-container">
-        <div class="badge-item">
-          <div class="badge-icon security-icon">🔒</div>
-          <h4>Security Engineering</h4>
-          <p>Completed the Security Engineer intro path</p>
+      <h3 style="text-align: center; margin: 2rem 0 1rem;">Achievement Metrics</h3>
+      <div class="metrics-container">
+        <div class="metric-box">
+          <span class="metric-number" style="color: #4caf50;">15</span>
+          <span class="metric-label">Security Engineering</span>
         </div>
-        <div class="badge-item">
-          <div class="badge-icon sql-icon">💉</div>
-          <h4>SQL Slayer</h4>
-          <p>Conquered Advanced SQL Injection</p>
+        <div class="metric-box">
+          <span class="metric-number" style="color: #e91e63;">8</span>
+          <span class="metric-label">SQL Injection Challenges</span>
         </div>
-        <div class="badge-item">
-          <div class="badge-icon linux-icon">🐧</div>
-          <h4>Linux PrivEsc</h4>
-          <p>Mastering Linux Privilege Escalation</p>
+        <div class="metric-box">
+          <span class="metric-number" style="color: #ffc107;">12</span>
+          <span class="metric-label">Linux PrivEsc Rooms</span>
         </div>
-        <div class="badge-item">
-          <div class="badge-icon windows-icon">🪟</div>
-          <h4>Blue</h4>
-          <p>Hacking into Windows via EternalBlue</p>
+        <div class="metric-box">
+          <span class="metric-number" style="color: #2196f3;">7</span>
+          <span class="metric-label">Windows Exploitation</span>
         </div>
-        <div class="badge-item">
-          <div class="badge-icon awareness-icon">🛡️</div>
-          <h4>Security Awareness</h4>
-          <p>Completed cyber security awareness training</p>
+        <div class="metric-box">
+          <span class="metric-number" style="color: #9c27b0;">10</span>
+          <span class="metric-label">Security Awareness</span>
         </div>
-        <div class="badge-item">
-          <div class="badge-icon log-icon">📊</div>
-          <h4>Logging Legend</h4>
-          <p>Completed the Log Analysis room</p>
+        <div class="metric-box">
+          <span class="metric-number" style="color: #ff5722;">13</span>
+          <span class="metric-label">Log Analysis</span>
         </div>
       </div>
+      
+      <p class="metrics-source-info">
+        Source: <a href="https://tryhackme.com/p/Akhmadjon" target="_blank">TryHackMe</a> • Last updated: 30/05/2025
+      </p>
     </div>
   </section>
 
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
-      <h2>Technical Projects</h2>
+      <div class="section-title">
+        <h2>Technical Projects</h2>
+      </div>
       <div class="projects-container">
         <div class="project-box">
           <div class="project-img">
@@ -826,7 +1331,7 @@
           <div class="project-content">
             <h3>Web Application Security Testing</h3>
             <p>Developed and implemented an automated security testing framework to identify OWASP Top 10 vulnerabilities in web applications.</p>
-            <a href="#" class="btn btn-security-outline">View Project</a>
+            <a href="#" class="btn btn-security-outline"><i class="fas fa-lock"></i> View Project</a>
           </div>
         </div>
         <div class="project-box">
@@ -836,7 +1341,7 @@
           <div class="project-content">
             <h3>Netlify Website Test Automation</h3>
             <p>Developed comprehensive test automation suite for Netlify website using Playwright and TypeScript.</p>
-            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline" target="_blank">View Project</a>
+            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline" target="_blank"><i class="fab fa-github"></i> View Project</a>
           </div>
         </div>
         <div class="project-box">
@@ -846,7 +1351,7 @@
           <div class="project-content">
             <h3>E-Commerce Test Framework</h3>
             <p>Created an end-to-end test framework for a large e-commerce platform, improving test coverage and release confidence.</p>
-            <a href="#" class="btn btn-outline">View Project</a>
+            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> View Project</a>
           </div>
         </div>
         <div class="project-box">
@@ -856,43 +1361,80 @@
           <div class="project-content">
             <h3>API Testing Suite</h3>
             <p>Developed automated API testing suite that reduced manual testing time by 70% and improved API reliability.</p>
-            <a href="#" class="btn btn-outline">View Project</a>
+            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> View Project</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Profiles Section -->
+  <!-- Profiles Section with SVG icons -->
   <section id="profiles">
     <div class="container">
-      <h2>Professional Profiles</h2>
-      
-      <!-- Academic profiles section removed as requested -->
+      <div class="section-title">
+        <h2>Professional Profiles</h2>
+      </div>
       
       <h3 class="profiles-heading">Technical & Security Profiles</h3>
       <div class="profiles-container">
-        <div class="profile-card security">
-          <img src="images/tryhackme.jpg" alt="TryHackMe Logo">
-          <h3>TryHackMe</h3>
-          <p>Active participant in cybersecurity challenges and learning paths.</p>
-          <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank">View Profile</a>
-        </div>
-        <div class="profile-card professional">
-          <img src="images/github.jpg" alt="GitHub Logo">
-          <h3>GitHub</h3>
-          <p>Code repositories and open-source contributions.</p>
-          <a href="https://github.com/Adam-CZPG" class="btn btn-outline" target="_blank">View Projects</a>
-        </div>
+      <!-- TryHackMe Profile Card with official logo -->
+      <div class="profile-card security" style="border-top: 4px solid #c11424;">
+        <!-- TryHackMe official logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="60" viewBox="0 0 320 170" style="margin-bottom: 1rem;">
+          <!-- Cloud shape -->
+          <path d="M90,30 C78,30 68,39 65,51 C63,50 61,50 58,50 C41,50 28,63 28,80 C28,97 41,110 58,110 L90,110 C112,110 130,92 130,70 C130,48 112,30 90,30z" fill="#c11424"/>
+          <!-- Binary numbers -->
+          <text x="50" y="70" fill="#000" font-family="monospace" font-size="12">10 10</text>
+          <text x="50" y="85" fill="#000" font-family="monospace" font-size="12">1110</text>
+          <text x="50" y="100" fill="#000" font-family="monospace" font-size="12">0101 01</text>
+          <text x="60" y="115" fill="#000" font-family="monospace" font-size="12">01 010</text>
+          <text x="60" y="130" fill="#c11424" font-family="monospace" font-size="12">01</text>
+          
+          <!-- TryHackMe text -->
+          <text x="150" y="60" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Try</text><text x="150" y="105" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#c11424">Hack</text>
+          <text x="150" y="150" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Me</text>
+        </svg>
+        <h3>TryHackMe</h3>
+        <p>Active participant in cybersecurity challenges and learning paths.</p>
+        <a href="https://tryhackme.com/p/Akhmadjon" class="btn" style="background-color: #c11424; color: white;" target="_blank">
+          <!-- Small TryHackMe logo for button -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100" style="fill: currentColor; vertical-align: middle; margin-right: 5px;">
+            <path d="M50,20 C44,20 39,24 37.5,30 C36.5,29.5 35.5,29.5 34,29.5 C25.5,29.5 19,36 19,44.5 C19,53 25.5,59.5 34,59.5 L50,59.5 C61,59.5 70,50.5 70,39.5 C70,28.5 61,20 50,20z"/>
+          </svg>
+          View Profile
+        </a>
+      </div>
+          
+      <!-- GitHub Profile Card -->
+      <div class="profile-card professional" style="border-top: 4px solid #3498db;">
+        <!-- GitHub Octocat icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+        </svg>
+        <h3>GitHub</h3>
+        <p>Code repositories and open-source contributions.</p>
+        <a href="https://github.com/Adam-CZPG" class="btn" style="background-color: white; color: #3498db; border: 1px solid #3498db;" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; vertical-align: middle; margin-right: 5px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View Projects
+        </a>
+      </div>
       </div>
       
       <h3 class="profiles-heading">Professional Networks</h3>
       <div class="profiles-container">
-        <div class="profile-card professional">
-          <img src="images/linkedin.jpg" alt="LinkedIn Logo">
+        <!-- LinkedIn Profile Card -->
+        <div class="profile-card professional" style="border-top: 4px solid #3498db;">
+          <!-- LinkedIn icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
           <h3>LinkedIn</h3>
           <p>Professional network and career updates.</p>
-          <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" class="btn btn-outline" target="_blank">Connect</a>
+          <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" class="btn" style="background-color: white; color: #3498db; border: 1px solid #3498db;" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; vertical-align: middle; margin-right: 5px;">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            Connect
+          </a>
         </div>
       </div>
     </div>
@@ -901,28 +1443,28 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <h2>Get In Touch</h2>
+      <div class="section-title">
+        <h2>Get In Touch</h2>
+      </div>
       <div class="contact-container">
         <div class="contact-form">
-          <form>
+          <form id="contact-form">
             <input type="text" placeholder="Your Name" required>
             <input type="email" placeholder="Your Email" required>
             <input type="text" placeholder="Subject">
             <textarea rows="6" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn">Send Message</button>
+            <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
           </form>
         </div>
         <div class="contact-info">
           <h3>Contact Information</h3>
-          <div class="contact-info">
-  <h3>Contact Information</h3>
-  <p><i>📧</i> Email: akhmadjonortikov@gmail.com</p>
-  <p><i>📱</i> Phone: +420 774 284 450</p>
-  <p><i>📍</i> Location: Prague, Czech Republic</p>
-  <div class="social-icons">
-    <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i>LinkedIn</i></a>
-  </div>
-</div>
+          <p><i class="fas fa-envelope"></i> Email: akhmadjonortikov@gmail.com</p>
+          <p><i class="fas fa-phone"></i> Phone: +420 774 284 450</p>
+          <p><i class="fas fa-map-marker-alt"></i> Location: Prague, Czech Republic</p>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -934,13 +1476,80 @@
     </div>
   </footer>
 
+  <script src="metrics.js"></script>
   <script>
-    // Simple JavaScript for smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+    // Typing animation effect
+    const typingTextElement = document.getElementById('typing-text');
+    const phrases = ["I'm Akhmadjon", "I'm a web" ,"developer"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingDelay = 200;
+    let newTextDelay = 2000; // Delay after phrase is completed
+
+    function typeEffect() {
+      const currentPhrase = phrases[phraseIndex];
+      
+      if (isDeleting) {
+        typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+        charIndex--;
+        typingDelay = 100;
+      } else {
+        typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+        charIndex++;
+        typingDelay = 200;
+      }
+      
+      // If word is complete
+      if (!isDeleting && charIndex === currentPhrase.length) {
+        // Pause at end
+        isDeleting = true;
+        typingDelay = newTextDelay;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        // Move to next phrase
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        typingDelay = 500;
+      }
+      
+      setTimeout(typeEffect, typingDelay);
+    }
+
+    // Start the typing animation when the page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(typeEffect, 1000);
+      
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+      
+      // Active navigation highlighting
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('#navbar ul li a');
+      
+      window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          
+          if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('current');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('current');
+          }
         });
       });
     });
