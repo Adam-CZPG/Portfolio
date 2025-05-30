@@ -147,7 +147,7 @@
     
     /* Hero Section */
     #hero {
-      background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('/api/placeholder/1200/800') no-repeat center center/cover;
+      background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('images/hero-bg.jpg') no-repeat center center/cover;
       color: white;
       height: 100vh;
       display: flex;
@@ -343,6 +343,52 @@
       border-top: 4px solid var(--primary-color);
     }
     
+    /* Metrics Section Styles */
+    .metrics-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .metric-box {
+      background: var(--light-color);
+      padding: 2rem;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .metric-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .metric-number {
+      display: block;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--academic-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-number.updating {
+      animation: pulse 0.5s ease;
+    }
+
+    .metrics-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 2rem;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
     /* Footer */
     #main-footer {
       background: var(--dark-color);
@@ -401,6 +447,7 @@
           <li><a href="#about">About</a></li>
           <li><a href="#skills">Skills</a></li>
           <li><a href="#research">Research</a></li>
+          <li><a href="#metrics">Metrics</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#profiles">Profiles</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -518,7 +565,7 @@
       <div class="projects-container">
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Research Publication">
+            <img src="images/research-1.jpg" alt="Research Publication">
           </div>
           <div class="project-content">
             <h3>Publication Title</h3>
@@ -528,7 +575,7 @@
         </div>
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Research Publication">
+            <img src="images/research-2.jpg" alt="Research Publication">
           </div>
           <div class="project-content">
             <h3>Publication Title</h3>
@@ -538,7 +585,7 @@
         </div>
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Research Publication">
+            <img src="images/research-3.jpg" alt="Research Publication">
           </div>
           <div class="project-content">
             <h3>Publication Title</h3>
@@ -554,6 +601,35 @@
     </div>
   </section>
 
+  <!-- Academic Metrics Section -->
+  <section id="metrics">
+    <div class="container">
+      <h2>Publication Metrics</h2>
+      <p>Current statistics from my research publications:</p>
+      
+      <div class="metrics-container">
+        <div class="metric-box">
+          <span class="metric-number" data-metric="totalViews">62,792</span>
+          <span class="metric-label">Total Views</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-number" data-metric="totalPublications">4</span>
+          <span class="metric-label">Publications</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-number" data-metric="citations">16</span>
+          <span class="metric-label">Citations</span>
+        </div>
+        <div class="metric-box">
+          <span class="metric-number" data-metric="downloads">2,186</span>
+          <span class="metric-label">Downloads</span>
+        </div>
+      </div>
+      
+      <p class="metrics-note">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: <span id="metrics-last-updated">Loading...</span></p>
+    </div>
+  </section>
+
   <!-- Projects Section -->
   <section id="projects">
     <div class="container">
@@ -561,7 +637,7 @@
       <div class="projects-container">
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Security Project">
+            <img src="images/security-project.jpg" alt="Security Project">
           </div>
           <div class="project-content">
             <h3>Web Application Security Testing</h3>
@@ -571,17 +647,17 @@
         </div>
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Project 1">
+            <img src="images/project-1.jpg" alt="Project 1">
           </div>
           <div class="project-content">
             <h3>Netlify Website Test Automation</h3>
             <p>Developed comprehensive test automation suite for Netlify website using Playwright and TypeScript.</p>
-            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline">View Project</a>
+            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline" target="_blank">View Project</a>
           </div>
         </div>
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Project 2">
+            <img src="images/project-2.jpg" alt="Project 2">
           </div>
           <div class="project-content">
             <h3>E-Commerce Test Framework</h3>
@@ -591,7 +667,7 @@
         </div>
         <div class="project-box">
           <div class="project-img">
-            <img src="/api/placeholder/400/300" alt="Project 3">
+            <img src="images/project-3.jpg" alt="Project 3">
           </div>
           <div class="project-content">
             <h3>API Testing Suite</h3>
@@ -611,19 +687,19 @@
       <h3 class="profiles-heading">Academic & Research Profiles</h3>
       <div class="profiles-container">
         <div class="profile-card academic">
-          <img src="/api/placeholder/100/100" alt="Google Scholar Logo">
+          <img src="images/google-scholar.jpg" alt="Google Scholar Logo">
           <h3>Google Scholar</h3>
           <p>Academic publications and citation metrics.</p>
           <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank">View Profile</a>
         </div>
         <div class="profile-card academic">
-          <img src="/api/placeholder/100/100" alt="Frontiers Logo">
+          <img src="images/frontiers.jpg" alt="Frontiers Logo">
           <h3>Frontiers</h3>
           <p>Research contributions and academic network.</p>
           <a href="https://loop.frontiersin.org/people/2148895/overview" class="btn btn-academic-outline" target="_blank">View Profile</a>
         </div>
         <div class="profile-card academic">
-          <img src="/api/placeholder/100/100" alt="ResearchGate Logo">
+          <img src="images/researchgate.jpg" alt="ResearchGate Logo">
           <h3>ResearchGate</h3>
           <p>Research papers, citations, and academic engagement metrics.</p>
           <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" class="btn btn-academic-outline" target="_blank">View Profile</a>
@@ -633,13 +709,13 @@
       <h3 class="profiles-heading">Technical & Security Profiles</h3>
       <div class="profiles-container">
         <div class="profile-card security">
-          <img src="/api/placeholder/100/100" alt="TryHackMe Logo">
+          <img src="images/tryhackme.jpg" alt="TryHackMe Logo">
           <h3>TryHackMe</h3>
           <p>Active participant in cybersecurity challenges and learning paths.</p>
           <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank">View Profile</a>
         </div>
         <div class="profile-card professional">
-          <img src="/api/placeholder/100/100" alt="GitHub Logo">
+          <img src="images/github.jpg" alt="GitHub Logo">
           <h3>GitHub</h3>
           <p>Code repositories and open-source contributions.</p>
           <a href="https://github.com/Adam-CZPG" class="btn btn-outline" target="_blank">View Projects</a>
@@ -649,7 +725,7 @@
       <h3 class="profiles-heading">Professional Networks</h3>
       <div class="profiles-container">
         <div class="profile-card professional">
-          <img src="/api/placeholder/100/100" alt="LinkedIn Logo">
+          <img src="images/linkedin.jpg" alt="LinkedIn Logo">
           <h3>LinkedIn</h3>
           <p>Professional network and career updates.</p>
           <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" class="btn btn-outline" target="_blank">Connect</a>
@@ -694,6 +770,9 @@
       <p>&copy; 2023 Ing. Akhmadjon Ortikov Ph.D. All Rights Reserved.</p>
     </div>
   </footer>
+
+  <!-- Publication Metrics Script -->
+  <script src="js/metrics.js"></script>
 
   <script>
     // Simple JavaScript for smooth scrolling
