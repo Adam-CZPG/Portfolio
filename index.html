@@ -60,6 +60,11 @@
     
     .btn {
       display: inline-block;
+      margin: 0 auto;padding: 0 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
       margin: 0 auto;
       padding: 0 2rem;
     }
@@ -127,6 +132,7 @@
     /* Header & Navigation */
     #main-header {
       background-color: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);background-color: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       position: fixed;
       top: 0;
@@ -156,10 +162,13 @@
     #navbar ul {
       display: flex;
       list-style: none;
+      flex-wrap: nowrap;
+      gap: 1.5rem;
     }
     
     #navbar ul li {
-      margin-left: 2rem;
+      margin-left: 0;
+      white-space: nowrap;
     }
     
     #navbar ul li a {
@@ -195,6 +204,9 @@
       height: 100vh;
       display: flex;
       align-items: center;
+      text-align: center;height: 100vh;
+      display: flex;
+      align-items: center;
       text-align: center;
       position: relative;
     }
@@ -218,13 +230,15 @@
     }
     
     #hero .typing-text {
-      height: 70px;
+      min-height: 70px;
       font-size: 3.5rem;
       font-weight: 700;
       margin-bottom: 1.5rem;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       color: var(--secondary-color);
+      line-height: 1.2;
+      width: 100%;
     }
     
     #hero .profession {
@@ -259,6 +273,10 @@
       color: white;
       transform: translateY(-3px);
     }
+    
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;}
     
     .scroll-down {
       position: absolute;
@@ -331,6 +349,8 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
+    
+     
     .about-text h3 {
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
@@ -403,6 +423,7 @@
       background: var(--light-bg);
       padding: 2rem;
       border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
@@ -450,12 +471,11 @@
       padding: 5rem 0;
     }
     
+    /* For the updated Work Experience section */
     .company-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
       margin: 2rem 0;
     }
     
@@ -471,28 +491,35 @@
     }
     
     .logo-container {
-      width: 120px;
-      height: 120px;
+      width: 100%;
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: var(--section-bg);
-      border-radius: 10px;
-      padding: 1rem;
-      margin-bottom: 0.5rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-    
-    .logo-container i {
-      font-size: 3rem;
-      color: var(--secondary-color);
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     .company-name {
-      font-size: 0.9rem;
+      font-size: 1rem;
       font-weight: 600;
-      color: var(--dark-text);
+      color: #333;
       text-align: center;
+    }
+    
+    @media (max-width: 992px) {
+      .company-logos {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .company-logos {
+        grid-template-columns: 1fr;
+      }
     }
     
     /* Research Section */
@@ -537,6 +564,10 @@
     .project-content {
       padding: 1.5rem;
     }
+    
+    .project-content h3 {
+      color: var(--dark-text);
+    }}
     
     .project-content h3 {
       color: var(--dark-text);
@@ -602,6 +633,9 @@
       margin: 2rem 0;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
+    
+    .profile-header {
+      display: flex;}
     
     .profile-header {
       display: flex;
@@ -673,6 +707,9 @@
       border-top: 4px solid var(--security-color);
     }
     
+    .profile-card.professional {border-top: 4px solid var(--security-color);
+    }
+    
     .profile-card.professional {
       border-top: 4px solid var(--primary-color);
     }
@@ -738,6 +775,9 @@
       to { opacity: 1; transform: translateY(0); }
     }
     
+    .fade-in {to { opacity: 1; transform: translateY(0); }
+    }
+    
     .fade-in {
       animation: fadeIn 1s ease forwards;
     }
@@ -746,6 +786,8 @@
     .typing-text::after {
       content: '|';
       animation: blink 0.7s infinite;
+      position: relative;
+      top: 0;
     }
     
     @keyframes blink {
@@ -769,13 +811,12 @@
         grid-template-columns: 1fr;
       }
       
-      .company-logos {
-        gap: 1.5rem;
+      #navbar ul li {
+        margin-left: 1rem;
       }
       
-      .logo-container {
-        width: 100px;
-        height: 100px;
+      #navbar ul li a {
+        font-size: 0.9rem;
       }
     }
     
@@ -805,19 +846,6 @@
       .about-buttons {
         justify-content: center;
       }
-      
-      .company-logos {
-        gap: 1rem;
-      }
-      
-      .logo-container {
-        width: 80px;
-        height: 80px;
-      }
-      
-      .company-name {
-        font-size: 0.8rem;
-      }
     }
     
     @media (max-width: 576px) {
@@ -832,13 +860,14 @@
   <header id="main-header">
     <div class="container">
       <nav id="navbar">
-        <h1 class="logo"><a href="#hero">Akhmadjon Ortikov</a></h1>
+        <h1 class="logo"><a href="#hero">Ing. Akhmadjon Ortikov Ph.D.</a></h1>
         <ul>
-          <li><a href="#hero" class="current">[ Home ]</a></li>
+          <li><a href="#hero" class="current">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#experience">Experience</a></li>
           <li><a href="#skills">Service</a></li>
           <li><a href="#research">Research</a></li>
+          <li><a href="#security-achievements">Security</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -850,16 +879,16 @@
     <div class="container">
       <div class="hero-content">
         <p class="welcome">Welcome!</p>
-        <div class="typing-text" id="typing-text">I'm Akhmadjon</div>
+        <div class="typing-text" id="typing-text"></div>
         <p class="profession">DEVELOPER</p>
         <div class="social-icons">
-          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-          <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-        </div>
+  <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+  <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="https://github.com/Adam-CZPG" target="_blank"><i class="fab fa-github"></i></a>
+</div>
       </div>
       <div class="scroll-down">
         <a href="#about"><i class="fas fa-chevron-down"></i></a>
@@ -883,31 +912,29 @@
           <p>With expertise in technologies like Playwright, Selenium, and various testing methodologies, I help teams deliver reliable and secure applications while maintaining an active academic research profile.</p>
           
           <div class="personal-info">
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-user"></i></div>
-              <div class="info-title">Full Name:</div>
-              <div class="info-value">Akhmadjon Ortikov</div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-envelope"></i></div>
-              <div class="info-title">Email:</div>
-              <div class="info-value">akhmadjonortikov@gmail.com</div>
-            </div>
-            <div class="info-item"></div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-phone"></i></div>
-              <div class="info-title">Phone:</div>
-              <div class="info-value">+420 774 284 450</div>
-            </div>
-            <div class="info-item">
-              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="info-title">Location:</div>
-              <div class="info-value">Prague, Czech Republic</div>
-            </div>
-          </div>
+  <div class="info-item">
+    <div class="info-icon"><i class="fas fa-user"></i></div>
+    <div class="info-title">Full Name:</div>
+    <div class="info-value">Akhmadjon Ortikov</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+    <div class="info-title">Email:</div>
+    <div class="info-value">akhmadjonortikov@gmail.com</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon"><i class="fas fa-phone"></i></div>
+    <div class="info-title">Phone:</div>
+    <div class="info-value">+420 774 284 450</div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+    <div class="info-title">Location:</div>
+    <div class="info-value">Prague, Czech Republic</div>
+  </div>
+</div>
           
           <div class="about-buttons">
-            <a href="#" class="btn btn-outline"><i class="fas fa-download"></i> Download CV</a>
             <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-graduation-cap"></i> Publications</a>
             <a href="https://tryhackme.com/p/Akhmadjon" class="btn btn-security-outline" target="_blank"><i class="fas fa-shield-alt"></i> Security Profile</a>
           </div>
@@ -916,160 +943,147 @@
     </div>
   </section>
 
-<!-- Work Experience Section -->
-<section id="experience">
-  <div class="container">
-    <div class="section-title">
-      <h2>Work Experience</h2>
-    </div>
-    <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
-      Throughout my career, I've had the opportunity to work with some incredible organizations, building expertise in software quality assurance, automation, and security.
-    </p>
-    
-    <style>
-      .company-logos {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        margin: 2rem 0;
-      }
-      
-      .company-logo {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 220px;
-        transition: transform 0.3s ease;
-      }
-      
-      .company-logo:hover {
-        transform: translateY(-10px);
-      }
-      
-      .logo-container {
-        width: 200px;
-        height: 90px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--section-bg);
-        border-radius: 10px;
-        padding: 1rem;
-        margin-bottom: 0.5rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
-    </style>
-    
-    <div class="company-logos">
-      <!-- Amazon logo - larger and more visible -->
-      <div class="company-logo">
-        <div class="logo-container" style="display: flex; justify-content: center; align-items: center;">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="180" height="60">
-            <!-- Simple amazon text - larger -->
-            <path d="M23,20 L40,20 C43,20 45,22 45,25 L45,35 C45,38 43,40 40,40 L23,40 C20,40 18,38 18,35 L18,25 C18,22 20,20 23,20 Z" fill="#FFFFFF"/>
-            <g transform="scale(1.8) translate(8, 4)">
-              <!-- "amazon" text -->
-              <path d="M35,17.5L35,15.3C35,15.1 34.8,15 34.6,15L30.4,15C30.2,15 30,15.1 30,15.3L30,17.1C30,17.3 30.2,17.5 30.4,17.5L32.7,17.5L30.1,21.1C30,21.2 30,21.4 30,21.5L30,23.7C30,23.9 30.2,24 30.4,24L34.6,24C34.8,24 35,23.9 35,23.7L35,21.9C35,21.7 34.8,21.5 34.6,21.5L32.3,21.5L34.9,17.9C35,17.8 35,17.6 35,17.5Z" fill="#000000"/>
-              <path d="M44,17.3L44,15.3C44,15.1 43.8,15 43.6,15L37.4,15C37.2,15 37,15.1 37,15.3L37,23.7C37,23.9 37.2,24 37.4,24L43.6,24C43.8,24 44,23.9 44,23.7L44,21.7C44,21.5 43.8,21.4 43.6,21.4L40,21.4L40,20.7L43.3,20.7C43.5,20.7 43.7,20.6 43.7,20.4L43.7,18.6C43.7,18.4 43.5,18.3 43.3,18.3L40,18.3L40,17.6L43.6,17.6C43.8,17.3 44,17.5 44,17.3Z" fill="#000000"/>
-              <path d="M53,17.3L53,15.3C53,15.1 52.8,15 52.6,15L46.4,15C46.2,15 46,15.1 46,15.3L46,23.7C46,23.9 46.2,24 46.4,24L52.6,24C52.8,24 53,23.9 53,23.7L53,21.7C53,21.5 52.8,21.4 52.6,21.4L49,21.4L49,20.7L52.3,20.7C52.5,20.7 52.7,20.6 52.7,20.4L52.7,18.6C52.7,18.4 52.5,18.3 52.3,18.3L49,18.3L49,17.6L52.6,17.6C52.8,17.3 53,17.5 53,17.3Z" fill="#000000"/>
-              <path d="M59,24C57,24 55.5,22.5 55.5,20.5C55.5,18.5 57,17 59,17C61,17 62.5,18.5 62.5,20.5C62.5,22.5 61,24 59,24ZM59,19C58.2,19 57.5,19.6 57.5,20.5C57.5,21.3 58.1,22 59,22C59.9,22 60.5,21.4 60.5,20.5C60.5,19.7 59.9,19 59,19Z" fill="#000000"/>
-              <path d="M68,24L65,24C64.8,24 64.6,23.9 64.6,23.7L64.6,15.3C64.6,15.1 64.8,15 65,15L67.4,15C67.6,15 67.8,15.1 67.8,15.3L67.8,20.9L70.5,15.3C70.6,15.1 70.7,15 70.9,15L73.3,15C73.5,15 73.7,15.1 73.7,15.3L73.7,23.7C73.7,23.9 73.5,24 73.3,24L70.9,24C70.7,24 70.5,23.9 70.5,23.7L70.5,18.1L67.8,23.7C67.7,23.9 67.6,24 68,24Z" fill="#000000"/>
-            </g>
-            <!-- Amazon smile/arrow - larger -->
-            <path d="M25,45C35,45 42,43 48,40C48.6,39.8 49,40.2 48.6,40.5C45,43 38,46 30,46C22,46 15,43 11.4,40.5C11,40.2 11.4,39.8 12,40C18,43 25,45 25,45Z" fill="#FF9900"/>
-            <path d="M46,40C46.2,39.8 46.6,40 46.6,40.3C46.6,41.3 45.6,43.3 44.6,44C44.4,44.2 44.2,44 44.3,43.8C44.8,43 45.6,41.3 46,40Z" fill="#FF9900"/>
-          </svg>
-        </div>
-        <span class="company-name">Amazon</span>
+  <!-- Work Experience Section -->
+  <section id="experience" style="background-color: #f9f9f9; padding: 5rem 0;">
+    <div class="container">
+      <div class="section-title">
+        <h2>Work Experience</h2>
       </div>
+      <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
+        Throughout my career, I've had the opportunity to work with some incredible organizations, building expertise in software quality assurance, automation, and security.
+      </p>
+      
+      <div class="company-logos">
+        <!-- Amazon -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="220" height="70">
+              <g transform="scale(1.8) translate(8, 4)">
+                <path d="M35,17.5L35,15.3C35,15.1 34.8,15 34.6,15L30.4,15C30.2,15 30,15.1 30,15.3L30,17.1C30,17.3 30.2,17.5 30.4,17.5L32.7,17.5L30.1,21.1C30,21.2 30,21.4 30,21.5L30,23.7C30,23.9 30.2,24 30.4,24L34.6,24C34.8,24 35,23.9 35,23.7L35,21.9C35,21.7 34.8,21.5 34.6,21.5L32.3,21.5L34.9,17.9C35,17.8 35,17.6 35,17.5Z" fill="#000000"/>
+                <path d="M44,17.3L44,15.3C44,15.1 43.8,15 43.6,15L37.4,15C37.2,15 37,15.1 37,15.3L37,23.7C37,23.9 37.2,24 37.4,24L43.6,24C43.8,24 44,23.9 44,23.7L44,21.7C44,21.5 43.8,21.4 43.6,21.4L40,21.4L40,20.7L43.3,20.7C43.5,20.7 43.7,20.6 43.7,20.4L43.7,18.6C43.7,18.4 43.5,18.3 43.3,18.3L40,18.3L40,17.6L43.6,17.6C43.8,17.3 44,17.5 44,17.3Z" fill="#000000"/>
+                <path d="M53,17.3L53,15.3C53,15.1 52.8,15 52.6,15L46.4,15C46.2,15 46,15.1 46,15.3L46,23.7C46,23.9 46.2,24 46.4,24L52.6,24C52.8,24 53,23.9 53,23.7L53,21.7C53,21.5 52.8,21.4 52.6,21.4L49,21.4L49,20.7L52.3,20.7C52.5,20.7 52.7,20.6 52.7,20.4L52.7,18.6C52.7,18.4 52.5,18.3 52.3,18.3L49,18.3L49,17.6L52.6,17.6C52.8,17.3 53,17.5 53,17.3Z" fill="#000000"/>
+                <path d="M25,45C35,45 42,43 48,40C48.6,39.8 49,40.2 48.6,40.5C45,43 38,46 30,46C22,46 15,43 11.4,40.5C11,40.2 11.4,39.8 12,40C18,43 25,45 25,45Z" fill="#FF9900"/>
+                <path d="M46,40C46.2,39.8 46.6,40 46.6,40.3C46.6,41.3 45.6,43.3 44.6,44C44.4,44.2 44.2,44 44.3,43.8C44.8,43 45.6,41.3 46,40Z" fill="#FF9900"/>
+              </g>
+            </svg>
+          </div>
+          <span class="company-name">Amazon</span>
+        </div>
 
-      <!-- Microsoft -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="180" height="70">
-            <rect x="5" y="5" width="18" height="18" fill="#F25022"/>
-            <rect x="25" y="5" width="18" height="18" fill="#7FBA00"/>
-            <rect x="5" y="25" width="18" height="18" fill="#00A4EF"/>
-            <rect x="25" y="25" width="18" height="18" fill="#FFB900"/>
-          </svg>
+        <!-- Microsoft -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="220" height="70">
+              <rect x="5" y="5" width="18" height="18" fill="#F25022"/>
+              <rect x="25" y="5" width="18" height="18" fill="#7FBA00"/>
+              <rect x="5" y="25" width="18" height="18" fill="#00A4EF"/>
+              <rect x="25" y="25" width="18" height="18" fill="#FFB900"/>
+            </svg>
+          </div>
+          <span class="company-name">Microsoft</span>
         </div>
-        <span class="company-name">Microsoft</span>
-      </div>
-      
-      <!-- Worldline -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="180" height="40">
-            <text x="5" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#33CCAA">WORLDLINE</text>
-            <path d="M180,20 C185,25 185,35 180,40" stroke="#33CCAA" stroke-width="2" fill="none"/>
-          </svg>
+        
+        <!-- Worldline -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="220" height="70">
+              <text x="5" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#33CCAA">WORLDLINE</text>
+              <path d="M180,20 C185,25 185,35 180,40" stroke="#33CCAA" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <span class="company-name">Worldline</span>
         </div>
-        <span class="company-name">Worldline</span>
-      </div>
-      
-      <!-- Netmonita -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="40">
-            <g transform="translate(10, 15) scale(1.2)">
-              <rect x="0" y="0" width="8" height="30" fill="#000"/>
-              <rect x="12" y="5" width="8" height="25" fill="#000"/>
-              <rect x="24" y="10" width="8" height="20" fill="#C0D72F"/>
-            </g>
-            <text x="55" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#000">net</text>
-            <text x="90" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#C0D72F">monita</text>
-            <text x="155" y="30" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#000">®</text>
-          </svg>
+        
+        <!-- Netmonita -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
+              <g transform="translate(10, 15) scale(1.2)">
+                <rect x="0" y="0" width="8" height="30" fill="#000000"/>
+                <rect x="12" y="5" width="8" height="25" fill="#000000"/>
+                <rect x="24" y="10" width="8" height="20" fill="#C0D72F"/>
+              </g>
+              <text x="55" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#000000">net</text>
+              <text x="90" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#C0D72F">monita</text>
+              <text x="155" y="30" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#000000">®</text>
+            </svg>
+          </div>
+          <span class="company-name">Netmonita</span>
         </div>
-        <span class="company-name">Netmonita</span>
-      </div>
-      
-      <!-- Media Matters International -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="180" height="45">
-            <rect x="5" y="5" width="35" height="35" fill="#0000AA"/>
-            <text x="15" y="30" font-family="Arial, sans-serif" font-weight="bold" font-size="25" fill="#FFFFFF">M</text>
-            <text x="45" y="20" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Media</text>
-            <text x="45" y="38" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Matters</text>
-          </svg>
+        
+        <!-- Media Matters International -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="220" height="70">
+              <rect x="5" y="5" width="35" height="35" fill="#0000AA"/>
+              <text x="15" y="30" font-family="Arial, sans-serif" font-weight="bold" font-size="25" fill="#FFFFFF">M</text>
+              <text x="45" y="20" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Media</text>
+              <text x="45" y="38" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Matters</text>
+            </svg>
+          </div>
+          <span class="company-name">Media Matters International</span>
         </div>
-        <span class="company-name">Media Matters International</span>
-      </div>
-      
-      <!-- Dacoreit -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="40">
-            <text x="15" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="24" fill="#000">Dacore</text>
-            <text x="100" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#0088CC">iT</text>
-            <path d="M125,20 C140,20 145,30 145,35" stroke="#0088CC" stroke-width="2" fill="none"/>
-          </svg>
+        
+        <!-- Dacoreit -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
+              <text x="15" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="24" fill="#000000">Dacore</text>
+              <text x="100" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#0088CC">iT</text>
+              <path d="M125,20 C140,20 145,30 145,35" stroke="#0088CC" stroke-width="2" fill="none"/>
+            </svg>
+          </div>
+          <span class="company-name">Dacoreit</span>
         </div>
-        <span class="company-name">Dacoreit</span>
-      </div>
-      
-      <!-- Cision -->
-      <div class="company-logo">
-        <div class="logo-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="180" height="45">
-            <text x="25" y="40" font-family="Arial, sans-serif" font-weight="bold" font-size="36">
-              <tspan fill="#001E61">C</tspan>
-              <tspan fill="#001E61">I</tspan>
-              <tspan fill="#F36E21">S</tspan>
-              <tspan fill="#F36E21">I</tspan>
-              <tspan fill="#001E61">O</tspan>
-              <tspan fill="#001E61">N</tspan>
-            </text>
-          </svg>
+        
+        <!-- Cision -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
+              <text x="25" y="40" font-family="Arial, sans-serif" font-weight="bold" font-size="36">
+                <tspan fill="#001E61">C</tspan>
+                <tspan fill="#001E61">I</tspan>
+                <tspan fill="#F36E21">S</tspan>
+                <tspan fill="#F36E21">I</tspan>
+                <tspan fill="#001E61">O</tspan>
+                <tspan fill="#001E61">N</tspan>
+              </text>
+            </svg>
+          </div>
+          <span class="company-name">Cision</span>
         </div>
-        <span class="company-name">Cision</span>
+        
+        <!-- Upwork -->
+        <div class="company-logo">
+          <div class="logo-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 140" width="220" height="70">
+              <!-- Upwork official-style logo -->
+              <g>
+                <!-- "up" part of logo -->
+                <path d="M 163.4,62.9 C 153.6,62.9 145.8,70.3 143.4,81.6 L 134.5,62.9 h-13.9 v 59.7 h 13.9 v -29.8 c 0,-10.8 5.9,-17.1 14.2,-17.1 7.8,0 12.8,5.2 12.8,14.2 v 32.7 h 13.9 v -35.2 c 0,-14.9 -9.4,-24.6 -22,-24.6 z" fill="#14a800"/>
+                
+                <!-- "work" part of logo -->
+                <path d="M 226.4,62.9 c -14.5,0 -24.9,11.1 -24.9,26.6 0,15.5 10.7,26.9 25.5,26.9 14.8,0 25.2,-11.5 25.2,-26.6 0,-15.2 -10.5,-26.9 -25.8,-26.9 z m 0.3,40.5 c -6.6,0 -11.5,-5.6 -11.5,-13.9 0,-8.3 4.9,-13.9 11.5,-13.9 7,0 11.9,5.6 11.9,13.9 0,8.3 -4.9,13.9 -11.9,13.9 z" fill="#14a800"/>
+                <path d="M 297.3,71.6 c -5.9,-5.9 -13.2,-8.7 -22,-8.7 h -20.8 v 59.7 h 20.8 c 8.7,0 16.1,-2.8 22,-8.7 6.9,-6.6 10.5,-15.9 10.5,-21.1 0,-5.2 -3.5,-14.5 -10.5,-21.2 z m -8,33.7 c -3.5,3.5 -8,5.2 -13.9,5.2 h -7 V 76 h 7 c 5.9,0 10.4,1.7 13.9,5.2 3.8,3.8 5.9,9.1 5.9,12.1 0,2.9 -2.1,8.3 -5.9,12.1 z" fill="#14a800"/>
+                <path d="M 337,122.6 c 6.2,0 12.1,-2.8 16.3,-7.3 l -7,-8 c -2.4,2.4 -5.2,3.8 -8,3.8 -6.6,0 -11.5,-5.6 -11.5,-13.9 0,-8.3 4.9,-13.9 11.5,-13.9 2.8,0 5.6,1 8,3.5 l 7,-8 c -4.2,-4.5 -9.7,-7.3 -16.3,-7.3 -14.5,0 -24.9,11.1 -24.9,26.6 0,15.5 10.7,26.9 25.2,26.6 z" fill="#14a800"/>
+                
+                <!-- Circle for the logo -->
+                <path d="M 84.5,64.8 C 74.5,64.8 66.3,73 66.3,83 c 0,10.1 8.2,18.2 18.2,18.2 10.1,0 18.2,-8.2 18.2,-18.2 0,-10 -8.2,-18.2 -18.2,-18.2 z" fill="#14a800"/>
+                
+                <!-- Upward path in logo -->
+                <path d="M 88.2,90 C 85.3,90 83,87.7 83,84.8 V 64.8 h 5.2 v 20 c 0,0 3.8,-7.7 11.8,-11.8 l 2.6,4.5 C 97.3,81.1 93.1,90 88.2,90 Z" fill="#14a800"/>
+                
+                <!-- Right diagonal part -->
+                <path d="M 116.7,85.3 C 113.3,93.9 107.7,99.5 101.4,99.5 c -3.1,0 -5.6,-1.2 -7.3,-3.5 l 3.8,-3.1 c 0.7,1 2.1,1.7 3.5,1.7 3.1,0 6.9,-3.1 9,-9 l 1.4,-3.8 -13.2,-32 h 6.2 l 10.1,24.6 10.1,-24.6 h 6.2 z" fill="#14a800"/>
+              </g>
+            </svg>
+          </div>
+          <span class="company-name">Upwork</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <!-- Skills Section -->
   <section id="skills">
     <div class="container">
@@ -1137,283 +1151,174 @@
     </div>
   </section>
   
-<!-- Research & Metrics Section with Animated Counters -->
-<section id="research">
-  <div class="container">
-    <div class="section-title">
-      <h2>Research & Academic Impact</h2>
-    </div>
-    <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
-      My academic research combines engineering principles with technological innovation to solve real-world challenges. With 4 publications garnering over 62,000 views and 32 citations, my work emphasizes practical applications in engineering and technology fields.
-    </p>
-    
-    <!-- Publication Metrics Section -->
-    <div style="background: var(--light-bg); border-radius: 10px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
-      <h3 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-chart-line"></i> Publication Impact Metrics</h3>
+  <!-- Research & Metrics Section with Animated Counters -->
+  <section id="research">
+    <div class="container">
+      <div class="section-title">
+        <h2>Research & Academic Impact</h2>
+      </div>
+      <p class="section-intro" style="text-align: center; margin-bottom: 2rem; color: var(--muted-text);">
+        My academic research combines engineering principles with technological innovation to solve real-world challenges. With 4 publications garnering over 62,000 views and 32 citations, my work emphasizes practical applications in engineering and technology fields.
+      </p>
       
-      <!-- Frontiers Loop Metrics -->
-      <div class="metrics-source">
-        <h3><i class="fas fa-chart-line"></i> Frontiers Loop Impact</h3>
-        <div class="metrics-container">
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="62792" data-metric="totalViews">0</span>
-            <span class="metric-label">Total Views</span>
+      <!-- Publication Metrics Section -->
+      <div style="background: var(--light-bg); border-radius: 10px; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+        <h3 style="text-align: center; margin-bottom: 2rem;"><i class="fas fa-chart-line"></i> Publication Impact Metrics</h3>
+        
+        <!-- Frontiers Loop Metrics -->
+        <div class="metrics-source">
+          <h3><i class="fas fa-chart-line"></i> Frontiers Loop Impact</h3>
+          <div class="metrics-container">
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="62792" data-metric="totalViews">0</span>
+              <span class="metric-label">Total Views</span>
+            </div>
+            <div class="metric-box"></div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="4" data-metric="totalPublications">0</span>
+              <span class="metric-label">Publications</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="16" data-metric="citations">0</span>
+              <span class="metric-label">Citations</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="2186" data-metric="downloads">0</span>
+              <span class="metric-label">Downloads</span>
+            </div>
           </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="4" data-metric="totalPublications">0</span>
-            <span class="metric-label">Publications</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="16" data-metric="citations">0</span>
-            <span class="metric-label">Citations</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="2186" data-metric="downloads">0</span>
-            <span class="metric-label">Downloads</span>
-          </div>
+          <p class="metrics-source-info">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: <span id="metrics-last-updated">30/05/2025</span></p>
         </div>
-        <p class="metrics-source-info">Source: <a href="https://loop.frontiersin.org/people/2148895/impact" target="_blank">Frontiers Loop</a> • Last updated: <span id="metrics-last-updated">30/05/2025</span></p>
+        
+        <!-- ResearchGate Metrics -->
+        <div class="metrics-source">
+          <h3><i class="fab fa-researchgate"></i> ResearchGate Profile Stats</h3>
+          <div class="metrics-container">
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="73.5" data-decimal="true">0</span>
+              <span class="metric-label">Research Interest Score</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="1262">0</span>
+              <span class="metric-label">Reads</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="32">0</span>
+              <span class="metric-label">Citations</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="180">0</span>
+              <span class="metric-label">Recommendations</span>
+            </div>
+          </div>
+          <p class="metrics-source-info">Source: <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" target="_blank">ResearchGate</a> • Last updated: 30/05/2025</p>
+        </div>
+        
+        <!-- Google Scholar Metrics -->
+        <div class="metrics-source">
+          <h3><i class="fas fa-graduation-cap"></i> Google Scholar Citations</h3>
+          <div class="metrics-container">
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="12">0</span>
+              <span class="metric-label">Publications</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="32">0</span>
+              <span class="metric-label">Citations</span>
+            </div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="4">0</span>
+              <span class="metric-label">h-index</span>
+            </div>
+            <div class="metric-box"></div>
+            <div class="metric-box">
+              <span class="metric-number counter" data-count="4">0</span>
+              <span class="metric-label">i10-index</span>
+            </div>
+          </div>
+          <p class="metrics-source-info">Source: <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank">Google Scholar</a> • Last updated: 30/05/2025</p>
+        </div>
       </div>
       
-      <!-- ResearchGate Metrics -->
-      <div class="metrics-source">
-        <h3><i class="fab fa-researchgate"></i> ResearchGate Profile Stats</h3>
-        <div class="metrics-container">
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="73.5" data-decimal="true">0</span>
-            <span class="metric-label">Research Interest Score</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="1262">0</span>
-            <span class="metric-label">Reads</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="32">0</span>
-            <span class="metric-label">Citations</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="180">0</span>
-            <span class="metric-label">Recommendations</span>
-          </div>
-        </div>
-        <p class="metrics-source-info">Source: <a href="https://www.researchgate.net/profile/Akhmadjon-Ortikov-Phd/stats" target="_blank">ResearchGate</a> • Last updated: 30/05/2025</p>
-      </div>
-      
-      <!-- Google Scholar Metrics -->
-      <div class="metrics-source">
-        <h3><i class="fas fa-graduation-cap"></i> Google Scholar Citations</h3>
-        <div class="metrics-container">
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="12">0</span>
-            <span class="metric-label">Publications</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="32">0</span>
-            <span class="metric-label">Citations</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="4">0</span>
-            <span class="metric-label">h-index</span>
-          </div>
-          <div class="metric-box">
-            <span class="metric-number counter" data-count="4">0</span>
-            <span class="metric-label">i10-index</span>
-          </div>
-        </div>
-        <p class="metrics-source-info">Source: <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" target="_blank">Google Scholar</a> • Last updated: 30/05/2025</p>
+      <div class="text-center" style="text-align: center; margin-top: 2rem;">
+        <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank"><i class="fas fa-graduation-cap"></i> View All Publications</a>
       </div>
     </div>
-    
-    <div class="text-center" style="text-align: center; margin-top: 2rem;">
-      <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic" target="_blank"><i class="fas fa-graduation-cap"></i> View All Publications</a>
-    </div>
-  </div>
-  
-  <!-- Counter Animation JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set up intersection observer to start counters when they come into view
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Start all counters within this container
-            const counters = entry.target.querySelectorAll('.counter');
-            counters.forEach(counter => {
-              const target = counter.getAttribute('data-count');
-              const isDecimal = counter.getAttribute('data-decimal') === 'true';
-              const duration = 2000; // Duration in milliseconds
-              
-              let start = 0;
-              const end = isDecimal ? parseFloat(target) : parseInt(target);
-              const step = end / 100; // Divide the animation into 100 steps
-              const increment = duration / 100; // Time for each step
-              
-              // Handle decimal numbers differently
-              if (isDecimal) {
-                let current = 0;
-                const timer = setInterval(() => {
-                  current += step;
-                  if (current >= end) {
-                    clearInterval(timer);
-                    counter.textContent = end.toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1});
-                  } else {
-                    counter.textContent = current.toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1});
-                  }
-                }, increment);
-              } else {
-                let current = 0;
-                const timer = setInterval(() => {
-                  current += step;
-                  if (current >= end) {
-                    clearInterval(timer);
-                    counter.textContent = end.toLocaleString('en-US');
-                  } else {
-                    counter.textContent = Math.round(current).toLocaleString('en-US');
-                  }
-                }, increment);
-              }
-            });
-            
-            // Once we've started the counters, stop observing this container
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.1 // Trigger when at least 10% of the element is visible
-      });
-      
-      // Observe the metrics container
-      const metricsContainers = document.querySelectorAll('.metrics-source');
-      metricsContainers.forEach(container => {
-        observer.observe(container);
-      });
-    });
-  </script>
-</section>
+  </section>
 
-<!-- Cybersecurity Achievements Section with Stats Cards and Animated Counters -->
-<section id="security-achievements">
-  <div class="container">
-    <div class="section-title">
-      <h2>Cybersecurity Achievements</h2>
-    </div>
-    <p style="text-align: center; margin-bottom: 2rem;">As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
-    
-    <!-- TryHackMe Badge Image Only -->
-    <div style="text-align: center; margin-bottom: 2rem;">
-      <img src="https://tryhackme-badges.s3.amazonaws.com/Akhmadjon.png" alt="TryHackMe Badge" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-    </div>
-    
-    <!-- TryHackMe Stats Cards with Animated Counters -->
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem;">
-      <!-- Rank Card -->
-      <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem; position: relative;">
-        <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(76, 175, 80, 0.2); color: #4caf50; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px;">top 8%</div>
-        <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Rank</div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-trophy" style="color: #4caf50; font-size: 1.5rem;"></i>
-          <span class="counter" data-count="122172" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+  <!-- Cybersecurity Achievements Section with Stats Cards and Animated Counters -->
+  <section id="security-achievements">
+    <div class="container">
+      <div class="section-title">
+        <h2>Cybersecurity Achievements</h2>
+      </div>
+      <p style="text-align: center; margin-bottom: 2rem;">As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
+      
+      <!-- TryHackMe Badge Image Only -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <img src="https://tryhackme-badges.s3.amazonaws.com/Akhmadjon.png" alt="TryHackMe Badge" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+      </div>
+      
+      <!-- TryHackMe Stats Cards with Animated Counters -->
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem;">
+        <!-- Rank Card -->
+        <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem; position: relative;">
+          <div style="position: absolute; top: 1rem; right: 1rem; background: rgba(76, 175, 80, 0.2); color: #4caf50; font-size: 0.8rem; padding: 0.3rem 0.6rem; border-radius: 4px;">top 8%</div>
+          <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Rank</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-trophy" style="color: #4caf50; font-size: 1.5rem;"></i>
+            <span class="counter" data-count="122172" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+          </div>
+        </div>
+        
+        <!-- Badges Card -->
+        <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
+          <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Badges</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-certificate" style="color: #4caf50; font-size: 1.5rem;"></i>
+            <span class="counter" data-count="13" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+          </div>
+        </div>
+        
+        <!-- Streak Card -->
+        <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
+          <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Streak</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-fire" style="color: #ff9800; font-size: 1.5rem;"></i>
+            <span class="counter" data-count="0" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+          </div>
+        </div>
+        
+        <!-- Completed Rooms Card -->
+        <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
+          <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Completed rooms</div>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-check-square" style="color: #4caf50; font-size: 1.5rem;"></i>
+            <span class="counter" data-count="65" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+          </div>
         </div>
       </div>
       
-      <!-- Badges Card -->
-      <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
-        <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Badges</div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-certificate" style="color: #4caf50; font-size: 1.5rem;"></i>
-          <span class="counter" data-count="13" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+      <!-- TryHackMe Badges from Screenshot -->
+      <h3 style="text-align: center; margin: 2rem 0 1.5rem;">Earned Badges</h3>
+      <div style="background: #141d2b; padding: 2rem; border-radius: 10px; color: white;">
+        <div style="text-align: center;">
+          <!-- Using the full screenshot as a single image -->
+          <img src="images/badges/tryhackme-badges.jpg" alt="TryHackMe Badges" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
         </div>
       </div>
       
-      <!-- Streak Card -->
-      <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
-        <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Streak</div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-fire" style="color: #ff9800; font-size: 1.5rem;"></i>
-          <span class="counter" data-count="0" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
-        </div>
-      </div>
-      
-      <!-- Completed Rooms Card -->
-      <div style="background: #141d2b; border-radius: 8px; padding: 1.5rem;">
-        <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Completed rooms</div>
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-          <i class="fas fa-check-square" style="color: #4caf50; font-size: 1.5rem;"></i>
-          <span class="counter" data-count="65" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
-        </div>
-      </div>
+      <p class="metrics-source-info" style="margin-top: 2rem;">
+        Source: <a href="https://tryhackme.com/p/Akhmadjon" target="_blank">TryHackMe</a> • Last updated: 30/05/2025
+      </p>
     </div>
-    
-    <!-- TryHackMe Badges from Screenshot -->
-    <h3 style="text-align: center; margin: 2rem 0 1.5rem;">Earned Badges</h3>
-    <div style="background: #141d2b; padding: 2rem; border-radius: 10px; color: white;">
-      <div style="text-align: center;">
-        <!-- Using the full screenshot as a single image -->
-        <img src="images/badges/tryhackme-badges.jpg" alt="TryHackMe Badges" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
-      </div>
-    </div>
-    
-    <p class="metrics-source-info" style="margin-top: 2rem;">
-      Source: <a href="https://tryhackme.com/p/Akhmadjon" target="_blank">TryHackMe</a> • Last updated: 30/05/2025
-    </p>
-  </div>
-  
-  <!-- Counter Animation JavaScript -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Set up intersection observer for animated counters
-      const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Get all counters
-            const counters = document.querySelectorAll('.counter');
-            
-            // Animate each counter
-            counters.forEach(counter => {
-              const target = parseInt(counter.getAttribute('data-count'));
-              
-              // Don't animate if the target is 0
-              if (target === 0) {
-                counter.textContent = '0';
-                return;
-              }
-              
-              // Calculate animation duration and steps based on number size
-              const duration = Math.min(2000, Math.max(1000, target > 1000 ? 2000 : 1500));
-              const steps = 100;
-              const increment = target / steps;
-              const stepTime = duration / steps;
-              
-              let current = 0;
-              const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                  clearInterval(timer);
-                  counter.textContent = target.toLocaleString();
-                } else {
-                  counter.textContent = Math.floor(current).toLocaleString();
-                }
-              }, stepTime);
-            });
-            
-            // Once triggered, no need to observe anymore
-            statsObserver.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.2
-      });
-      
-      // Observe the section containing the counters
-      const statsSection = document.querySelector('#security-achievements');
-      if (statsSection) {
-        statsObserver.observe(statsSection);
-      }
-    });
-  </script>
-</section>
+  </section>
 
-<h2>Technical Projects</h2>
+  <!-- Technical Projects Section -->
+  <section id="technical-projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Technical Projects</h2>
       </div>
       <div class="projects-container">
         <div class="project-box">
@@ -1469,47 +1374,50 @@
       
       <h3 class="profiles-heading">Technical & Security Profiles</h3>
       <div class="profiles-container">
-      <!-- TryHackMe Profile Card with official logo -->
-      <div class="profile-card security" style="border-top: 4px solid #c11424;">
-        <!-- TryHackMe official logo -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="60" viewBox="0 0 320 170" style="margin-bottom: 1rem;">
-          <!-- Cloud shape -->
-          <path d="M90,30 C78,30 68,39 65,51 C63,50 61,50 58,50 C41,50 28,63 28,80 C28,97 41,110 58,110 L90,110 C112,110 130,92 130,70 C130,48 112,30 90,30z" fill="#c11424"/>
-          <!-- Binary numbers -->
-          <text x="50" y="70" fill="#000" font-family="monospace" font-size="12">10 10</text>
-          <text x="50" y="85" fill="#000" font-family="monospace" font-size="12">1110</text>
-          <text x="50" y="100" fill="#000" font-family="monospace" font-size="12">0101 01</text>
-          <text x="60" y="115" fill="#000" font-family="monospace" font-size="12">01 010</text>
-          <text x="60" y="130" fill="#c11424" font-family="monospace" font-size="12">01</text>
-          
-          <!-- TryHackMe text -->
-          <text x="150" y="60" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Try</text><text x="150" y="105" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#c11424">Hack</text>
-          <text x="150" y="150" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Me</text>
-        </svg>
-        <h3>TryHackMe</h3>
-        <p>Active participant in cybersecurity challenges and learning paths.</p>
-        <a href="https://tryhackme.com/p/Akhmadjon" class="btn" style="background-color: #c11424; color: white;" target="_blank">
-          <!-- Small TryHackMe logo for button -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100" style="fill: currentColor; vertical-align: middle; margin-right: 5px;">
-            <path d="M50,20 C44,20 39,24 37.5,30 C36.5,29.5 35.5,29.5 34,29.5 C25.5,29.5 19,36 19,44.5 C19,53 25.5,59.5 34,59.5 L50,59.5 C61,59.5 70,50.5 70,39.5 C70,28.5 61,20 50,20z"/>
+        <!-- TryHackMe Profile Card with official logo -->
+        <div class="profile-card security" style="border-top: 4px solid #c11424;">
+          <!-- TryHackMe official logo -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="100" height="60" viewBox="0 0 320 170" style="margin-bottom: 1rem;">
+            <!-- Cloud shape -->
+            <path d="M90,30 C78,30 68,39 65,51 C63,50 61,50 58,50 C41,50 28,63 28,80 C28,97 41,110 58,110 L90,110 C112,110 130,92 130,70 C130,48 112,30 90,30z" fill="#c11424"/>
+            <!-- Binary numbers -->
+            <text x="50" y="70" fill="#000" font-family="monospace" font-size="12">10 10</text>
+            <text x="50" y="85" fill="#000" font-family="monospace" font-size="12">1110</text>
+            <text x="50" y="100" fill="#000" font-family="monospace" font-size="12">0101 01</text>
+            <text x="60" y="115" fill="#000" font-family="monospace" font-size="12">01 010</text>
+            <text x="60" y="130" fill="#c11424" font-family="monospace" font-size="12">01</text>
+            
+            <!-- TryHackMe text -->
+            <text x="150" y="60" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Try</text>
+            <text x="150" y="105" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#c11424">Hack</text>
+            <text x="150" y="150" font-family="Arial, sans-serif" font-weight="bold" font-size="40" fill="#000">Me</text>
           </svg>
-          View Profile
-        </a>
-      </div>
-          
-      <!-- GitHub Profile Card -->
-      <div class="profile-card professional" style="border-top: 4px solid #3498db;">
-        <!-- GitHub Octocat icon -->
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-        </svg>
-        <h3>GitHub</h3>
-        <p>Code repositories and open-source contributions.</p>
-        <a href="https://github.com/Adam-CZPG" class="btn" style="background-color: white; color: #3498db; border: 1px solid #3498db;" target="_blank">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; vertical-align: middle; margin-right: 5px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          <h3>TryHackMe</h3>
+          <p>Active participant in cybersecurity challenges and learning paths.</p>
+          <a href="https://tryhackme.com/p/Akhmadjon" class="btn" style="background-color: #c11424; color: white;" target="_blank">
+            <!-- Small TryHackMe logo for button -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 100 100" style="fill: currentColor; vertical-align: middle; margin-right: 5px;">
+              <path d="M50,20 C44,20 39,24 37.5,30 C36.5,29.5 35.5,29.5 34,29.5 C25.5,29.5 19,36 19,44.5 C19,53 25.5,59.5 34,59.5 L50,59.5 C61,59.5 70,50.5 70,39.5 C70,28.5 61,20 50,20z"/>
+            </svg>
+            View Profile
+          </a>
+        </div>
+            
+        <!-- GitHub Profile Card -->
+        <div class="profile-card professional" style="border-top: 4px solid #3498db;">
+          <!-- GitHub Octocat icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
-          View Projects
-        </a>
-      </div>
+          <h3>GitHub</h3>
+          <p>Code repositories and open-source contributions.</p>
+          <a href="https://github.com/Adam-CZPG" class="btn" style="background-color: white; color: #3498db; border: 1px solid #3498db;" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: currentColor; vertical-align: middle; margin-right: 5px;">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View Projects
+          </a>
+        </div>
       </div>
       
       <h3 class="profiles-heading">Professional Networks</h3>
@@ -1517,7 +1425,8 @@
         <!-- LinkedIn Profile Card -->
         <div class="profile-card professional" style="border-top: 4px solid #3498db;">
           <!-- LinkedIn icon -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" style="margin-bottom: 1rem; fill: #3498db;">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
           <h3>LinkedIn</h3>
           <p>Professional network and career updates.</p>
@@ -1568,47 +1477,47 @@
     </div>
   </footer>
 
-  <script src="metrics.js"></script>
+  <!-- Scripts -->
   <script>
-    // Typing animation effect
-    const typingTextElement = document.getElementById('typing-text');
-    const phrases = ["I'm Akhmadjon", "I'm a web" ,"developer"];
-    let phraseIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingDelay = 200;
-    let newTextDelay = 2000; // Delay after phrase is completed
-
-    function typeEffect() {
-      const currentPhrase = phrases[phraseIndex];
-      
-      if (isDeleting) {
-        typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
-        charIndex--;
-        typingDelay = 100;
-      } else {
-        typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
-        charIndex++;
-        typingDelay = 200;
-      }
-      
-      // If word is complete
-      if (!isDeleting && charIndex === currentPhrase.length) {
-        // Pause at end
-        isDeleting = true;
-        typingDelay = newTextDelay;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        // Move to next phrase
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        typingDelay = 500;
-      }
-      
-      setTimeout(typeEffect, typingDelay);
-    }
-
-    // Start the typing animation when the page loads
+    // Updated typing animation effect
     document.addEventListener('DOMContentLoaded', function() {
+      const typingTextElement = document.getElementById('typing-text');
+      const phrases = ["I'm Akhmadjon", "I'm a Web Developer", "I'm a QA Specialist", "I'm a Security Enthusiast"];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let typingDelay = 100;
+      let newTextDelay = 2000; // Delay after phrase is completed
+
+      function typeEffect() {
+        const currentPhrase = phrases[phraseIndex];
+        
+        if (isDeleting) {
+          typingTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+          typingDelay = 50;
+        } else {
+          typingTextElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+          typingDelay = 150;
+        }
+        
+        // If word is complete
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          // Pause at end
+          isDeleting = true;
+          typingDelay = newTextDelay;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          // Move to next phrase
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          typingDelay = 500;
+        }
+        
+        setTimeout(typeEffect, typingDelay);
+      }
+
+      // Start typing animation
       setTimeout(typeEffect, 1000);
       
       // Smooth scrolling
@@ -1643,6 +1552,62 @@
             link.classList.add('current');
           }
         });
+      });
+      
+      // Set up intersection observer for animated counters
+      const observerOptions = {
+        threshold: 0.1
+      };
+      
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+              const target = counter.getAttribute('data-count');
+              const isDecimal = counter.getAttribute('data-decimal') === 'true';
+              const duration = 2000; // Duration in milliseconds
+              
+              let start = 0;
+              const end = isDecimal ? parseFloat(target) : parseInt(target);
+              const step = end / 100; // Divide the animation into 100 steps
+              const increment = duration / 100; // Time for each step
+              
+              // Handle decimal numbers differently
+              if (isDecimal) {
+                let current = 0;
+                const timer = setInterval(() => {
+                  current += step;
+                  if (current >= end) {
+                    clearInterval(timer);
+                    counter.textContent = end.toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1});
+                  } else {
+                    counter.textContent = current.toLocaleString('en-US', {minimumFractionDigits: 1, maximumFractionDigits: 1});
+                  }
+                }, increment);
+              } else {
+                let current = 0;
+                const timer = setInterval(() => {
+                  current += step;
+                  if (current >= end) {
+                    clearInterval(timer);
+                    counter.textContent = end.toLocaleString('en-US');
+                  } else {
+                    counter.textContent = Math.round(current).toLocaleString('en-US');
+                  }
+                }, increment);
+              }
+            });
+            
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all sections with counters
+      document.querySelectorAll('.metrics-source, #security-achievements').forEach(section => {
+        counterObserver.observe(section);
       });
     });
   </script>
