@@ -283,30 +283,30 @@
     }
     
     #hero .welcome {
-      font-size: 1.5rem;
-      color: var(--muted-text);
-      margin-bottom: 1rem;
-    }
+  font-size: 1.5rem;
+  color: white; /* var(--muted-text) o'rniga white */
+  margin-bottom: 1rem;
+}
     
     #hero .typing-text {
-      min-height: 70px;
-      font-size: 3.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      position: relative;
-      overflow: visible;
-      color: var(--secondary-color);
-      line-height: 1.2;
-      width: 100%;
-    }
+  min-height: 70px;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: visible;
+  color: white; /* var(--secondary-color) o'rniga white */
+  line-height: 1.2;
+  width: 100%;
+}
     
     #hero .profession {
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      color: var(--muted-text);
-    }
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  color: white; /* var(--muted-text) o'rniga white */
+}
     
     .social-icons {
       display: flex;
@@ -316,22 +316,22 @@
     }
     
     .social-icons a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.05);
-      color: var(--dark-text);
-      transition: all 0.3s ease;
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2); /* rgba(0, 0, 0, 0.05) o'rniga */
+  color: white; /* var(--dark-text) o'rniga */
+  transition: all 0.3s ease;
+}
     
     .social-icons a:hover {
-      background: var(--highlight-color);
-      color: white;
-      transform: translateY(-3px);
-    }
+  background: white; /* var(--highlight-color) o'rniga */
+  color: rgba(52, 152, 219, 1); /* white o'rniga */
+  transform: translateY(-3px);
+}
     
     .scroll-down {
       position: absolute;
@@ -353,6 +353,9 @@
         transform: translateY(-5px);
       }
     }
+.scroll-down a {
+  color: white;
+}
     
     /* About Section - Compact Version */
     #about {
@@ -922,7 +925,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="hero">
+  <section id="hero" style="background: linear-gradient(rgba(52, 152, 219, 0.5), rgba(41, 128, 185, 0.5)), url('images/hero-background.jpg') no-repeat center center/cover;">
     <div class="container">
       <div class="hero-content">
         <p class="welcome">Welcome!</p>
