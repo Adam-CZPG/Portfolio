@@ -60,7 +60,14 @@
     
     .btn {
       display: inline-block;
-      margin: 0 auto;padding: 0 2rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
     
     .btn {
@@ -129,15 +136,70 @@
       padding: 5rem 0;
     }
     
+    /* Top Header Bar */
+    .top-header {
+      background-color: #f9f9f9;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.9rem;
+    }
+    
+    .top-header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .contact-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .contact-links a {
+      color: #555;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-links i {
+      margin-right: 8px;
+      color: var(--primary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      color: #555;
+      transition: color 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+    
+    @media (max-width: 768px) {
+      .top-header-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .contact-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+    
     /* Header & Navigation */
     #main-header {
       background-color: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);background-color: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
       position: fixed;
       top: 0;
       left: 0;
@@ -202,9 +264,6 @@
     #hero {
       background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url('images/hero-bg.jpg') no-repeat center center/cover;
       height: 100vh;
-      display: flex;
-      align-items: center;
-      text-align: center;height: 100vh;
       display: flex;
       align-items: center;
       text-align: center;
@@ -273,10 +332,6 @@
       color: white;
       transform: translateY(-3px);
     }
-    
-    .scroll-down {
-      position: absolute;
-      bottom: 30px;}
     
     .scroll-down {
       position: absolute;
@@ -349,8 +404,6 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
-    
-     
     .about-text h3 {
       font-size: 1.8rem;
       margin-bottom: 0.5rem;
@@ -423,7 +476,6 @@
       background: var(--light-bg);
       padding: 2rem;
       border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
@@ -471,54 +523,86 @@
       padding: 5rem 0;
     }
     
-    /* For the updated Work Experience section */
-    .company-logos {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin: 2rem 0;
+    /* CSS for colorful, slow-moving logo slider */
+    .logos-section {
+      padding: 3rem 0;
+      background: transparent; /* Removed background */
+      overflow: hidden;
+      position: relative;
     }
     
-    .company-logo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease;
-    }
-    
-    .company-logo:hover {
-      transform: translateY(-10px);
-    }
-    
-    .logo-container {
+    .logos-section::before {
+      content: '';
+      position: absolute;
       width: 100%;
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0) 95%, rgba(255,255,255,1) 100%);
+      z-index: 2;
+      pointer-events: none;
     }
     
-    .company-name {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #333;
-      text-align: center;
+    .logos-container {
+      overflow: hidden;
+      padding: 20px 0;
+      white-space: nowrap;
+      position: relative;
     }
     
-    @media (max-width: 992px) {
-      .company-logos {
-        grid-template-columns: repeat(2, 1fr);
+    .logos-slide {
+      display: inline-block;
+      animation: 40s slideLogos infinite linear; /* Slower animation (40s) */
+      animation-play-state: running;
+    }
+    
+    .logos-container:hover .logos-slide {
+      animation-play-state: paused; /* Pause on hover */
+    }
+    
+    .logo-item {
+      display: inline-block;
+      margin: 0 60px; /* More spacing between logos */
+      filter: grayscale(100%) brightness(0.8);
+      opacity: 0.7;
+      transition: all 1.2s ease; /* Slower transition */
+      transform: scale(0.85);
+    }
+    
+    .logo-item:hover {
+      filter: grayscale(0%) brightness(1.05);
+      opacity: 1;
+      transform: scale(1.1) translateY(-10px);
+      transition: all 0.5s ease;
+    }
+    
+    /* Individual logo color effects on hover */
+    .logo-item:nth-child(8n+1):hover { box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3); }
+    .logo-item:nth-child(8n+2):hover { box-shadow: 0 10px 30px rgba(219, 68, 55, 0.3); }
+    .logo-item:nth-child(8n+3):hover { box-shadow: 0 10px 30px rgba(244, 180, 0, 0.3); }
+    .logo-item:nth-child(8n+4):hover { box-shadow: 0 10px 30px rgba(15, 157, 88, 0.3); }
+    .logo-item:nth-child(8n+5):hover { box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3); }
+    .logo-item:nth-child(8n+6):hover { box-shadow: 0 10px 30px rgba(219, 68, 55, 0.3); }
+    .logo-item:nth-child(8n+7):hover { box-shadow: 0 10px 30px rgba(244, 180, 0, 0.3); }
+    .logo-item:nth-child(8n+8):hover { box-shadow: 0 10px 30px rgba(15, 157, 88, 0.3); }
+    .logo-item:nth-child(9n):hover { box-shadow: 0 10px 30px rgba(0, 99, 65, 0.3); } /* CZU PEF */
+    
+    .logo-item img {
+      height: 80px;
+      width: auto;
+      max-width: 220px;
+      vertical-align: middle;
+      transition: all 0.8s ease;
+      padding: 15px;
+      border-radius: 12px;
+    }
+    
+    @keyframes slideLogos {
+      0% {
+        transform: translateX(0);
       }
-    }
-    
-    @media (max-width: 576px) {
-      .company-logos {
-        grid-template-columns: 1fr;
+      100% {
+        transform: translateX(-100%);
       }
     }
     
@@ -564,10 +648,6 @@
     .project-content {
       padding: 1.5rem;
     }
-    
-    .project-content h3 {
-      color: var(--dark-text);
-    }}
     
     .project-content h3 {
       color: var(--dark-text);
@@ -635,9 +715,6 @@
     }
     
     .profile-header {
-      display: flex;}
-    
-    .profile-header {
       display: flex;
       align-items: center;
       gap: 2rem;
@@ -659,59 +736,6 @@
     .highlight {
       color: var(--security-color);
       font-weight: bold;
-    }
-    
-    /* Profiles Section */
-    #profiles {
-      background: var(--section-bg);
-    }
-    
-    .profiles-heading {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
-    
-    .profiles-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .profile-card {
-      background: var(--light-bg);
-      border-radius: 5px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-    }
-    
-    .profile-card:hover {
-      transform: translateY(-5px);
-    }
-    
-    .profile-card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 1rem;
-      object-fit: cover;
-    }
-    
-    .profile-card.academic {
-      border-top: 4px solid var(--academic-color);
-    }
-    
-    .profile-card.security {
-      border-top: 4px solid var(--security-color);
-    }
-    
-    .profile-card.professional {border-top: 4px solid var(--security-color);
-    }
-    
-    .profile-card.professional {
-      border-top: 4px solid var(--primary-color);
     }
     
     /* Contact Section */
@@ -773,9 +797,6 @@
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-in {to { opacity: 1; transform: translateY(0); }
     }
     
     .fade-in {
@@ -846,6 +867,14 @@
       .about-buttons {
         justify-content: center;
       }
+      
+      .logo-item {
+        margin: 0 30px;
+      }
+      
+      .logo-item img {
+        height: 60px;
+      }
     }
     
     @media (max-width: 576px) {
@@ -856,6 +885,24 @@
   </style>
 </head>
 <body>
+  <!-- Top Header Bar -->
+  <div class="top-header">
+    <div class="top-header-container">
+      <div class="contact-links">
+        <a href="tel:+420774284450"><i class="fas fa-phone"></i> +420 774 284 450</a>
+        <a href="#"><i class="fas fa-map-marker-alt"></i> Prague, Czech Republic</a>
+        <a href="mailto:akhmadjonortikov@gmail.com"><i class="fas fa-envelope"></i> akhmadjonortikov@gmail.com</a>
+      </div>
+      <div class="social-links">
+        <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Adam-CZPG" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
   <!-- Header -->
   <header id="main-header">
     <div class="container">
@@ -882,13 +929,13 @@
         <div class="typing-text" id="typing-text"></div>
         <p class="profession">DEVELOPER</p>
         <div class="social-icons">
-  <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-  <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
-  <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-  <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-  <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-  <a href="https://github.com/Adam-CZPG" target="_blank"><i class="fab fa-github"></i></a>
-</div>
+          <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-telegram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/Adam-CZPG" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
       </div>
       <div class="scroll-down">
         <a href="#about"><i class="fas fa-chevron-down"></i></a>
@@ -912,27 +959,27 @@
           <p>With expertise in technologies like Playwright, Selenium, and various testing methodologies, I help teams deliver reliable and secure applications while maintaining an active academic research profile.</p>
           
           <div class="personal-info">
-  <div class="info-item">
-    <div class="info-icon"><i class="fas fa-user"></i></div>
-    <div class="info-title">Full Name:</div>
-    <div class="info-value">Akhmadjon Ortikov</div>
-  </div>
-  <div class="info-item">
-    <div class="info-icon"><i class="fas fa-envelope"></i></div>
-    <div class="info-title">Email:</div>
-    <div class="info-value">akhmadjonortikov@gmail.com</div>
-  </div>
-  <div class="info-item">
-    <div class="info-icon"><i class="fas fa-phone"></i></div>
-    <div class="info-title">Phone:</div>
-    <div class="info-value">+420 774 284 450</div>
-  </div>
-  <div class="info-item">
-    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
-    <div class="info-title">Location:</div>
-    <div class="info-value">Prague, Czech Republic</div>
-  </div>
-</div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-user"></i></div>
+              <div class="info-title">Full Name:</div>
+              <div class="info-value">Akhmadjon Ortikov</div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-envelope"></i></div>
+              <div class="info-title">Email:</div>
+              <div class="info-value">akhmadjonortikov@gmail.com</div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-phone"></i></div>
+              <div class="info-title">Phone:</div>
+              <div class="info-value">+420 774 284 450</div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="info-title">Location:</div>
+              <div class="info-value">Prague, Czech Republic</div>
+            </div>
+          </div>
           
           <div class="about-buttons">
             <a href="https://scholar.google.com/citations?user=J07SXvwAAAAJ" class="btn btn-academic-outline" target="_blank"><i class="fas fa-graduation-cap"></i> Publications</a>
@@ -953,132 +1000,56 @@
         Throughout my career, I've had the opportunity to work with some incredible organizations, building expertise in software quality assurance, automation, and security.
       </p>
       
-      <div class="company-logos">
-        <!-- Amazon -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="220" height="70">
-              <g transform="scale(1.8) translate(8, 4)">
-                <path d="M35,17.5L35,15.3C35,15.1 34.8,15 34.6,15L30.4,15C30.2,15 30,15.1 30,15.3L30,17.1C30,17.3 30.2,17.5 30.4,17.5L32.7,17.5L30.1,21.1C30,21.2 30,21.4 30,21.5L30,23.7C30,23.9 30.2,24 30.4,24L34.6,24C34.8,24 35,23.9 35,23.7L35,21.9C35,21.7 34.8,21.5 34.6,21.5L32.3,21.5L34.9,17.9C35,17.8 35,17.6 35,17.5Z" fill="#000000"/>
-                <path d="M44,17.3L44,15.3C44,15.1 43.8,15 43.6,15L37.4,15C37.2,15 37,15.1 37,15.3L37,23.7C37,23.9 37.2,24 37.4,24L43.6,24C43.8,24 44,23.9 44,23.7L44,21.7C44,21.5 43.8,21.4 43.6,21.4L40,21.4L40,20.7L43.3,20.7C43.5,20.7 43.7,20.6 43.7,20.4L43.7,18.6C43.7,18.4 43.5,18.3 43.3,18.3L40,18.3L40,17.6L43.6,17.6C43.8,17.3 44,17.5 44,17.3Z" fill="#000000"/>
-                <path d="M53,17.3L53,15.3C53,15.1 52.8,15 52.6,15L46.4,15C46.2,15 46,15.1 46,15.3L46,23.7C46,23.9 46.2,24 46.4,24L52.6,24C52.8,24 53,23.9 53,23.7L53,21.7C53,21.5 52.8,21.4 52.6,21.4L49,21.4L49,20.7L52.3,20.7C52.5,20.7 52.7,20.6 52.7,20.4L52.7,18.6C52.7,18.4 52.5,18.3 52.3,18.3L49,18.3L49,17.6L52.6,17.6C52.8,17.3 53,17.5 53,17.3Z" fill="#000000"/>
-                <path d="M25,45C35,45 42,43 48,40C48.6,39.8 49,40.2 48.6,40.5C45,43 38,46 30,46C22,46 15,43 11.4,40.5C11,40.2 11.4,39.8 12,40C18,43 25,45 25,45Z" fill="#FF9900"/>
-                <path d="M46,40C46.2,39.8 46.6,40 46.6,40.3C46.6,41.3 45.6,43.3 44.6,44C44.4,44.2 44.2,44 44.3,43.8C44.8,43 45.6,41.3 46,40Z" fill="#FF9900"/>
-              </g>
-            </svg>
+      <!-- Colorful Logo Slider -->
+      <div class="logos-section">
+        <div class="logos-container">
+          <div class="logos-slide">
+            <!-- First set of logos -->
+            <div class="logo-item">
+              <img src="images/logos/amazon.svg" alt="Amazon">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/microsoft.svg" alt="Microsoft">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/worldline.svg" alt="Worldline">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/netmonita.svg" alt="Netmonita">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/media-matters.svg" alt="Media Matters International">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/dacoreit.svg" alt="Dacoreit">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/cision.svg" alt="Cision">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/upwork.svg" alt="Upwork">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/czu-pef.svg" alt="CZU PEF">
+            </div>
+            
+            <!-- Duplicate logos for seamless looping -->
+            <div class="logo-item">
+              <img src="images/logos/amazon.svg" alt="Amazon">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/microsoft.svg" alt="Microsoft">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/worldline.svg" alt="Worldline">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/netmonita.svg" alt="Netmonita">
+            </div>
+            <div class="logo-item">
+              <img src="images/logos/media-matters.svg" alt="Media Matters International">
+            </div>
           </div>
-          <span class="company-name">Amazon</span>
-        </div>
-
-        <!-- Microsoft -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="220" height="70">
-              <rect x="5" y="5" width="18" height="18" fill="#F25022"/>
-              <rect x="25" y="5" width="18" height="18" fill="#7FBA00"/>
-              <rect x="5" y="25" width="18" height="18" fill="#00A4EF"/>
-              <rect x="25" y="25" width="18" height="18" fill="#FFB900"/>
-            </svg>
-          </div>
-          <span class="company-name">Microsoft</span>
-        </div>
-        
-        <!-- Worldline -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="220" height="70">
-              <text x="5" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="30" fill="#33CCAA">WORLDLINE</text>
-              <path d="M180,20 C185,25 185,35 180,40" stroke="#33CCAA" stroke-width="2" fill="none"/>
-            </svg>
-          </div>
-          <span class="company-name">Worldline</span>
-        </div>
-        
-        <!-- Netmonita -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
-              <g transform="translate(10, 15) scale(1.2)">
-                <rect x="0" y="0" width="8" height="30" fill="#000000"/>
-                <rect x="12" y="5" width="8" height="25" fill="#000000"/>
-                <rect x="24" y="10" width="8" height="20" fill="#C0D72F"/>
-              </g>
-              <text x="55" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#000000">net</text>
-              <text x="90" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="20" fill="#C0D72F">monita</text>
-              <text x="155" y="30" font-family="Arial, sans-serif" font-weight="normal" font-size="10" fill="#000000">®</text>
-            </svg>
-          </div>
-          <span class="company-name">Netmonita</span>
-        </div>
-        
-        <!-- Media Matters International -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 60" width="220" height="70">
-              <rect x="5" y="5" width="35" height="35" fill="#0000AA"/>
-              <text x="15" y="30" font-family="Arial, sans-serif" font-weight="bold" font-size="25" fill="#FFFFFF">M</text>
-              <text x="45" y="20" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Media</text>
-              <text x="45" y="38" font-family="Arial, sans-serif" font-weight="bold" font-size="14" fill="#0000AA">Matters</text>
-            </svg>
-          </div>
-          <span class="company-name">Media Matters International</span>
-        </div>
-        
-        <!-- Dacoreit -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
-              <text x="15" y="35" font-family="Arial, sans-serif" font-weight="normal" font-size="24" fill="#000000">Dacore</text>
-              <text x="100" y="35" font-family="Arial, sans-serif" font-weight="bold" font-size="24" fill="#0088CC">iT</text>
-              <path d="M125,20 C140,20 145,30 145,35" stroke="#0088CC" stroke-width="2" fill="none"/>
-            </svg>
-          </div>
-          <span class="company-name">Dacoreit</span>
-        </div>
-        
-        <!-- Cision -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 60" width="220" height="70">
-              <text x="25" y="40" font-family="Arial, sans-serif" font-weight="bold" font-size="36">
-                <tspan fill="#001E61">C</tspan>
-                <tspan fill="#001E61">I</tspan>
-                <tspan fill="#F36E21">S</tspan>
-                <tspan fill="#F36E21">I</tspan>
-                <tspan fill="#001E61">O</tspan>
-                <tspan fill="#001E61">N</tspan>
-              </text>
-            </svg>
-          </div>
-          <span class="company-name">Cision</span>
-        </div>
-        
-        <!-- Upwork -->
-        <div class="company-logo">
-          <div class="logo-container">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 140" width="220" height="70">
-              <!-- Upwork official-style logo -->
-              <g>
-                <!-- "up" part of logo -->
-                <path d="M 163.4,62.9 C 153.6,62.9 145.8,70.3 143.4,81.6 L 134.5,62.9 h-13.9 v 59.7 h 13.9 v -29.8 c 0,-10.8 5.9,-17.1 14.2,-17.1 7.8,0 12.8,5.2 12.8,14.2 v 32.7 h 13.9 v -35.2 c 0,-14.9 -9.4,-24.6 -22,-24.6 z" fill="#14a800"/>
-                
-                <!-- "work" part of logo -->
-                <path d="M 226.4,62.9 c -14.5,0 -24.9,11.1 -24.9,26.6 0,15.5 10.7,26.9 25.5,26.9 14.8,0 25.2,-11.5 25.2,-26.6 0,-15.2 -10.5,-26.9 -25.8,-26.9 z m 0.3,40.5 c -6.6,0 -11.5,-5.6 -11.5,-13.9 0,-8.3 4.9,-13.9 11.5,-13.9 7,0 11.9,5.6 11.9,13.9 0,8.3 -4.9,13.9 -11.9,13.9 z" fill="#14a800"/>
-                <path d="M 297.3,71.6 c -5.9,-5.9 -13.2,-8.7 -22,-8.7 h -20.8 v 59.7 h 20.8 c 8.7,0 16.1,-2.8 22,-8.7 6.9,-6.6 10.5,-15.9 10.5,-21.1 0,-5.2 -3.5,-14.5 -10.5,-21.2 z m -8,33.7 c -3.5,3.5 -8,5.2 -13.9,5.2 h -7 V 76 h 7 c 5.9,0 10.4,1.7 13.9,5.2 3.8,3.8 5.9,9.1 5.9,12.1 0,2.9 -2.1,8.3 -5.9,12.1 z" fill="#14a800"/>
-                <path d="M 337,122.6 c 6.2,0 12.1,-2.8 16.3,-7.3 l -7,-8 c -2.4,2.4 -5.2,3.8 -8,3.8 -6.6,0 -11.5,-5.6 -11.5,-13.9 0,-8.3 4.9,-13.9 11.5,-13.9 2.8,0 5.6,1 8,3.5 l 7,-8 c -4.2,-4.5 -9.7,-7.3 -16.3,-7.3 -14.5,0 -24.9,11.1 -24.9,26.6 0,15.5 10.7,26.9 25.2,26.6 z" fill="#14a800"/>
-                
-                <!-- Circle for the logo -->
-                <path d="M 84.5,64.8 C 74.5,64.8 66.3,73 66.3,83 c 0,10.1 8.2,18.2 18.2,18.2 10.1,0 18.2,-8.2 18.2,-18.2 0,-10 -8.2,-18.2 -18.2,-18.2 z" fill="#14a800"/>
-                
-                <!-- Upward path in logo -->
-                <path d="M 88.2,90 C 85.3,90 83,87.7 83,84.8 V 64.8 h 5.2 v 20 c 0,0 3.8,-7.7 11.8,-11.8 l 2.6,4.5 C 97.3,81.1 93.1,90 88.2,90 Z" fill="#14a800"/>
-                
-                <!-- Right diagonal part -->
-                <path d="M 116.7,85.3 C 113.3,93.9 107.7,99.5 101.4,99.5 c -3.1,0 -5.6,-1.2 -7.3,-3.5 l 3.8,-3.1 c 0.7,1 2.1,1.7 3.5,1.7 3.1,0 6.9,-3.1 9,-9 l 1.4,-3.8 -13.2,-32 h 6.2 l 10.1,24.6 10.1,-24.6 h 6.2 z" fill="#14a800"/>
-              </g>
-            </svg>
-          </div>
-          <span class="company-name">Upwork</span>
         </div>
       </div>
     </div>
@@ -1173,7 +1144,6 @@
               <span class="metric-number counter" data-count="62792" data-metric="totalViews">0</span>
               <span class="metric-label">Total Views</span>
             </div>
-            <div class="metric-box"></div>
             <div class="metric-box">
               <span class="metric-number counter" data-count="4" data-metric="totalPublications">0</span>
               <span class="metric-label">Publications</span>
@@ -1230,7 +1200,6 @@
               <span class="metric-number counter" data-count="4">0</span>
               <span class="metric-label">h-index</span>
             </div>
-            <div class="metric-box"></div>
             <div class="metric-box">
               <span class="metric-number counter" data-count="4">0</span>
               <span class="metric-label">i10-index</span>
@@ -1254,12 +1223,12 @@
       </div>
       <p style="text-align: center; margin-bottom: 2rem;">As a cybersecurity enthusiast, I actively participate in TryHackMe challenges and training. Currently ranked in the <span class="highlight">top 8%</span> of all users with <span class="highlight">65+ completed rooms</span>.</p>
       
-     <!-- TryHackMe Badge Image with clickable link -->
-<div style="text-align: center; margin-bottom: 2rem;">
-  <a href="https://tryhackme.com/p/Akhmadjon" target="_blank">
-    <img src="https://tryhackme-badges.s3.amazonaws.com/Akhmadjon.png" alt="TryHackMe Badge" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
-  </a>
-</div>
+      <!-- TryHackMe Badge Image with clickable link -->
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <a href="https://tryhackme.com/p/Akhmadjon" target="_blank">
+          <img src="https://tryhackme-badges.s3.amazonaws.com/Akhmadjon.png" alt="TryHackMe Badge" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+        </a>
+      </div>
       
       <!-- TryHackMe Stats Cards with Animated Counters -->
       <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem;">
@@ -1269,7 +1238,7 @@
           <div style="color: #aaa; font-size: 1.1rem; margin-bottom: 0.5rem;">Rank</div>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
             <i class="fas fa-trophy" style="color: #4caf50; font-size: 1.5rem;"></i>
-            <span class="counter" data-count="122306" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
+            <span class="counter" data-count="122172" style="color: white; font-size: 2rem; font-weight: bold;">0</span>
           </div>
         </div>
         
@@ -1306,7 +1275,7 @@
       <div style="background: #141d2b; padding: 2rem; border-radius: 10px; color: white;">
         <div style="text-align: center;">
           <!-- Using the full screenshot as a single image -->
-          <img src="images/badges/tryhackme-badges.jpg" alt="TryHackMe Badges" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+          <img src="images/logos/tryhackme-badges.jpg" alt="TryHackMe Badges" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
         </div>
       </div>
       
@@ -1315,60 +1284,6 @@
       </p>
     </div>
   </section>
-
-  <!-- Technical Projects Section -->
-  <section id="technical-projects">
-    <div class="container">
-      <div class="section-title">
-        <h2>Technical Projects</h2>
-      </div>
-      <div class="projects-container">
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/security-project.jpg" alt="Security Project">
-          </div>
-          <div class="project-content">
-            <h3>Web Application Security Testing</h3>
-            <p>Developed and implemented an automated security testing framework to identify OWASP Top 10 vulnerabilities in web applications.</p>
-            <a href="#" class="btn btn-security-outline"><i class="fas fa-lock"></i> View Project</a>
-          </div>
-        </div>
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/project-1.jpg" alt="Project 1">
-          </div>
-          <div class="project-content">
-            <h3>Netlify Website Test Automation</h3>
-            <p>Developed comprehensive test automation suite for Netlify website using Playwright and TypeScript.</p>
-            <a href="https://github.com/Adam-CZPG/netlify-tests" class="btn btn-outline" target="_blank"><i class="fab fa-github"></i> View Project</a>
-          </div>
-        </div>
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/project-2.jpg" alt="Project 2">
-          </div>
-          <div class="project-content">
-            <h3>E-Commerce Test Framework</h3>
-            <p>Created an end-to-end test framework for a large e-commerce platform, improving test coverage and release confidence.</p>
-            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> View Project</a>
-          </div>
-        </div>
-        <div class="project-box">
-          <div class="project-img">
-            <img src="images/project-3.jpg" alt="Project 3">
-          </div>
-          <div class="project-content">
-            <h3>API Testing Suite</h3>
-            <p>Developed automated API testing suite that reduced manual testing time by 70% and improved API reliability.</p>
-            <a href="#" class="btn btn-outline"><i class="fas fa-code"></i> View Project</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Profiles Section with SVG icons -->
-  
 
   <!-- Contact Section -->
   <section id="contact">
@@ -1386,15 +1301,46 @@
             <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
           </form>
         </div>
-        <div class="contact-info">
-          <h3>Contact Information</h3>
-          <p><i class="fas fa-envelope"></i> Email: akhmadjonortikov@gmail.com</p>
-          <p><i class="fas fa-phone"></i> Phone: +420 774 284 450</p>
-          <p><i class="fas fa-map-marker-alt"></i> Location: Prague, Czech Republic</p>
-          <div class="social-icons">
-            <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          </div>
-        </div>
+        <div class="contact-info" style="padding: 15px 0; border-bottom: 1px solid #eee;">
+  <div style="display: flex; flex-direction: column; gap: 20px;">
+    <!-- Contact Information -->
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+      <a href="mailto:akhmadjonortikov@gmail.com" style="text-decoration: none; color: #555; display: flex; align-items: center;">
+        <i class="fas fa-envelope" style="margin-right: 8px; color: #3498db;"></i>
+        <span>akhmadjonortikov@gmail.com</span>
+      </a>
+      
+      <a href="tel:+420774284450" style="text-decoration: none; color: #555; display: flex; align-items: center;">
+        <i class="fas fa-phone" style="margin-right: 8px; color: #3498db;"></i>
+        <span>+420 774 284 450</span>
+      </a>
+      
+      <a href="#" style="text-decoration: none; color: #555; display: flex; align-items: center;">
+        <i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #3498db;"></i>
+        <span>Prague, Czech Republic</span>
+      </a>
+    </div>
+    
+    <!-- Social Media Icons - Now below location and larger -->
+    <div style="display: flex; gap: 25px; margin-top: 15px; justify-content: flex-start;">
+      <a href="https://www.linkedin.com/in/ing-akhmadjon-ortikov-ph-d-118657109" target="_blank" style="color: #0077b5; font-size: 28px;">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+      <a href="https://github.com/Adam-CZPG" target="_blank" style="color: #333; font-size: 28px;">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="#" target="_blank" style="color: #1877f2; font-size: 28px;">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#" target="_blank" style="color: #1da1f2; font-size: 28px;">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#" target="_blank" style="color: #e4405f; font-size: 28px;">
+        <i class="fab fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </section>
@@ -1445,7 +1391,7 @@
         
         setTimeout(typeEffect, typingDelay);
       }
-
+      
       // Start typing animation
       setTimeout(typeEffect, 1000);
       
