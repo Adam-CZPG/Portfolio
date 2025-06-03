@@ -563,43 +563,70 @@
       animation-play-state: paused; /* Pause on hover */
     }
     
-    .logo-item {
-      display: inline-block;
-      margin: 0 60px; /* More spacing between logos */
-      filter: grayscale(100%) brightness(0.8);
-      opacity: 0.7;
-      transition: all 1.2s ease; /* Slower transition */
-      transform: scale(0.85);
-    }
-    
-    .logo-item:hover {
-      filter: grayscale(0%) brightness(1.05);
-      opacity: 1;
-      transform: scale(1.1) translateY(-10px);
-      transition: all 0.5s ease;
-    }
-    
-    /* Individual logo color effects on hover */
-    .logo-item:nth-child(8n+1):hover { box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3); }
-    .logo-item:nth-child(8n+2):hover { box-shadow: 0 10px 30px rgba(219, 68, 55, 0.3); }
-    .logo-item:nth-child(8n+3):hover { box-shadow: 0 10px 30px rgba(244, 180, 0, 0.3); }
-    .logo-item:nth-child(8n+4):hover { box-shadow: 0 10px 30px rgba(15, 157, 88, 0.3); }
-    .logo-item:nth-child(8n+5):hover { box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3); }
-    .logo-item:nth-child(8n+6):hover { box-shadow: 0 10px 30px rgba(219, 68, 55, 0.3); }
-    .logo-item:nth-child(8n+7):hover { box-shadow: 0 10px 30px rgba(244, 180, 0, 0.3); }
-    .logo-item:nth-child(8n+8):hover { box-shadow: 0 10px 30px rgba(15, 157, 88, 0.3); }
-    .logo-item:nth-child(9n):hover { box-shadow: 0 10px 30px rgba(0, 99, 65, 0.3); } /* CZU PEF */
-    
-    .logo-item img {
-      height: 80px;
-      width: auto;
-      max-width: 220px;
-      vertical-align: middle;
-      transition: all 0.8s ease;
-      padding: 15px;
-      border-radius: 12px;
-    }
-    
+    /* Logo-item stillarini o'zgartirish */
+/* Logo-item stillarini yangilash */
+.logo-item {
+  display: inline-block;
+  margin: 0 60px;
+  opacity: 0.7;
+  transition: all 0.8s ease;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.logo-item:hover {
+  opacity: 1;
+  transform: scale(1.1) translateY(-5px);
+}
+
+/* Hover effektlarini o'chirish */
+.logo-item:nth-child(8n+1):hover,
+.logo-item:nth-child(8n+2):hover,
+.logo-item:nth-child(8n+3):hover,
+.logo-item:nth-child(8n+4):hover,
+.logo-item:nth-child(8n+5):hover,
+.logo-item:nth-child(8n+6):hover,
+.logo-item:nth-child(8n+7):hover,
+.logo-item:nth-child(8n+8):hover,
+.logo-item:nth-child(9n):hover {
+  box-shadow: none;
+}
+
+.logo-item img {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  vertical-align: middle;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+/* Logo slider stilini yangilash */
+.logos-section {
+  padding: 3rem 0;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.logos-container {
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+  width: 100%;
+}
+
+.logos-slide {
+  display: flex;
+  animation: 40s slideLogos infinite linear;
+  animation-play-state: running;
+  width: max-content;
+}    
     @keyframes slideLogos {
       0% {
         transform: translateX(0);
@@ -911,6 +938,7 @@
     <div class="container">
       <nav id="navbar">
         <h1 class="logo"><a href="#hero">Ing. Akhmadjon Ortikov Ph.D.</a></h1>
+
         <ul>
           <li><a href="#hero" class="current">Home</a></li>
           <li><a href="#about">About</a></li>
