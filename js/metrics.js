@@ -1,5 +1,23 @@
-// Publication metrics updater
+// Combined mobile menu functionality and publication metrics updater
 document.addEventListener('DOMContentLoaded', function() {
+    // Get references to menu elements
+    const menu = document.getElementById('menu');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideMenu = menu && menu.contains(event.target);
+        const isClickOnMenuButton = mobileMenuBtn && mobileMenuBtn.contains(event.target);
+        
+        // If the menu is active and the click is outside the menu and not on the button
+        if (menu && menu.classList.contains('active') && !isClickInsideMenu && !isClickOnMenuButton) {
+            menu.classList.remove('active');
+            if (mobileMenuBtn) {
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+    });
+    
     // Function to update metrics
     function updateMetrics() {
         // Static metrics (since Frontiers doesn't provide a direct API)
