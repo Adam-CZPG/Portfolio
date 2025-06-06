@@ -242,6 +242,18 @@
       color: var(--dark-text);
     }
     
+@media (max-width: 768px) {
+  /* Hide the entire top header on mobile */
+  .top-header {
+    display: none;
+  }
+  
+  /* Alternative: If you want to keep the social links but hide just the contact info */
+  /*.contact-links {
+    display: none;
+  }*/
+}
+
     /* Hero Section */
     #hero {
       background: linear-gradient(rgba(52, 152, 219, 0.5), rgba(41, 128, 185, 0.5)), url('images/hero-background.jpg') no-repeat center center/cover;
